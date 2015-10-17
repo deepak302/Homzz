@@ -1,0 +1,140 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.mentobile.homzz.SearchFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <EditText
+                android:id="@+id/search_ed_search"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edittext_design"
+                android:drawableLeft="@android:drawable/ic_menu_search"
+                android:hint="@string/search_city"
+                android:singleLine="true"
+                android:textColorHint="@color/green" />
+
+            <TextView
+                android:id="@+id/search_tv_propertytype"
+                style="@style/textview_header"
+                android:text="PROPERTY TYPE" />
+
+            <HorizontalScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/search_imgv_apartment"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:background="@mipmap/ic_launcher" />
+
+                    <ImageView
+                        android:id="@+id/search_imgv_plot"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:background="@mipmap/ic_launcher" />
+
+                    <ImageView
+                        android:id="@+id/search_imgv_house"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:background="@mipmap/ic_launcher" />
+
+                    <ImageView
+                        android:id="@+id/search_imgv_land"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:background="@mipmap/ic_launcher" />
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <TextView
+                android:id="@+id/search_tv_badroom"
+                style="@style/textview_header"
+                android:text="BADROOMS" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/search_tv_bd1"
+                    style="@style/textview_simple_text"
+                    android:text="1" />
+
+                <TextView
+                    android:id="@+id/search_tv_bd2"
+                    style="@style/textview_simple_text"
+                    android:text="2" />
+
+                <TextView
+                    android:id="@+id/search_tv_bd3"
+                    style="@style/textview_simple_text"
+                    android:text="3" />
+
+                <TextView
+                    android:id="@+id/search_tv_bd4"
+                    style="@style/textview_simple_text"
+                    android:text="4" />
+
+                <TextView
+                    android:id="@+id/search_tv_bd4plus"
+                    style="@style/textview_simple_text"
+                    android:text="4+" />
+            </LinearLayout>
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </HorizontalScrollView>
+
+            <TextView
+                android:id="@+id/search_tv_price_range"
+                style="@style/textview_header"
+                android:text="PRICE RANGE" />
+
+            <LinearLayout
+                android:id="@+id/seekbar_testing"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/search_btn_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="10dp"
+        android:background="@drawable/button_selector"
+        android:text="Search"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+</RelativeLayout>
