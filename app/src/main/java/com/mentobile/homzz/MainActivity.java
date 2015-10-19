@@ -1,60 +1,61 @@
 package com.mentobile.homzz;
 
-import android.app.ActionBar;
-import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Fragment;
 import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
-import android.view.Gravity;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ImageButton;
 import android.widget.ListView;
-import android.support.v4.app.ActionBarDrawerToggle;
-import android.widget.RelativeLayout;
-import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.mentobile.utility.DBHandler;
-
 import java.util.ArrayList;
 
-public class MainActivity extends Activity implements AdapterView.OnItemClickListener, ActionBar.TabListener {
+public class MainActivity extends ActionBarActivity implements AdapterView.OnItemClickListener,ActionBar.OnNavigationListener {
 
     private String TAG = "MainActivity";
 
-    //Navigation Drawer layout
-    private DrawerLayout drawerLayout;
-    private ActionBarDrawerToggle actionBarDrawerToggle;
-    private CharSequence mDrawerTitle;
-    private CharSequence mTitle;
-    private ArrayList<NvItems> arrayList;
-    private SMenuAdapter sMenuAdapter;
-    private ListView listView;
-    private DBHandler dbHandler;
+    private DrawerLayout mDrawerLayout;
+    private ViewPager viewPager;
+    private ListView mDrawerList;
+    private ActionBarDrawerToggle mDrawerToggle;
+
+    private SMenuAdapter nvAdapter;
+    Toolbar toolbar;
+    ArrayList<NvItems> arrNVItems = new ArrayList<NvItems>();
 
     private TextView tvNVEmail;
     private TextView tvNVName;
 
-    FragmentManager manager;
-    Fragment fragmentTrends;
-    Fragment fragmentSearch;
+    private DBHandler dbHandler;
+
 
     @Override
     protected void onStart() {
         super.onStart();
-        setProfile();
+        // setProfile();
     }
 
     @Override
@@ -81,87 +82,94 @@ public class MainActivity extends Activity implements AdapterView.OnItemClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        manager = getFragmentManager();
-        fragmentTrends = new TrendFragment();
-        fragmentSearch = new SearchFragment();
-
         dbHandler = new DBHandler(getApplicationContext(), 1);
-        mTitle = mDrawerTitle = getTitle();
-        drawerLayout = (DrawerLayout) findViewById(R.id.main_drawer);
-        listView = (ListView) findViewById(R.id.main_lv_nvdrawer);
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        mDrawerList = (ListView) findViewById(R.id.left_drawer);
+
         LayoutInflater inflater = getLayoutInflater();
         final ViewGroup viewGroup = (ViewGroup) inflater.inflate(R.layout.nv_header, null, false);
         tvNVEmail = (TextView) viewGroup.findViewById(R.id.nvheader_tv_pemail);
         tvNVName = (TextView) viewGroup.findViewById(R.id.nvheader_tv_pname);
-        listView.addHeaderView(viewGroup, null, false);
+        mDrawerList.addHeaderView(viewGroup, null, false);
 
-        arrayList = new ArrayList<NvItems>();
+        ActionBar actionBar = getSupportActionBar();
+
         String nv_array[] = getResources().getStringArray(R.array.prompt_nv_drawer);
         for (int i = 0; i < nv_array.length; i++) {
             NvItems items = new NvItems(R.mipmap.ic_launcher, nv_array[i], null, false);
-            arrayList.add(items);
+            arrNVItems.add(items);
         }
-        sMenuAdapter = new SMenuAdapter(getApplicationContext(),
-                R.layout.nv_drawer_row, arrayList);
-        listView.setAdapter(sMenuAdapter);
-        listView.setOnItemClickListener(this);
+        nvAdapter = new SMenuAdapter(getApplicationContext(), R.layout.nv_drawer_row, arrNVItems);
+        mDrawerList.setAdapter(nvAdapter);
+        mDrawerList.setOnItemClickListener(this);
 
-        String[] tab_name = getResources().getStringArray(R.array.action_tab_name);
-        ActionBar actionBar = getActionBar();
-        setCustomActionBar();
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-        for (int i = 0; i < 2; i++) {
-            ActionBar.Tab tab = actionBar.newTab();
-            tab.setText(tab_name[i]);
-            tab.setTabListener(this);
-            actionBar.addTab(tab);
+        mDrawerToggle = new ActionBarDrawerToggle(
+                this,                  /* host Activity */
+                mDrawerLayout,         /* DrawerLayout object */
+                toolbar,  /* nav drawer image to replace 'Up' caret */
+                R.string.navigation_drawer_open,  /* "open drawer" description for accessibility */
+                R.string.navigation_drawer_close  /* "close drawer" description for accessibility */
+        ) {
+            public void onDrawerClosed(View view) {
+                invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
+            }
+
+            public void onDrawerOpened(View drawerView) {
+                invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
+            }
+        };
+        mDrawerLayout.setDrawerListener(mDrawerToggle);
+        mDrawerToggle.syncState();
+
+        actionBar.setHomeButtonEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayShowTitleEnabled(false);
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
+
+        String items[] = getResources().getStringArray(R.array.spinner_city);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, items);
+        actionBar.setListNavigationCallbacks(adapter, this);
+
+        String tabs[] = getResources().getStringArray(R.array.action_tab_name);
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
+        for (String tab_name : tabs) {
+            tabLayout.addTab(tabLayout.newTab().setText(tab_name));
         }
-    }
-
-    private void setCustomActionBar() {
-        ActionBar actionBar = getActionBar();
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
-        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-
-        RelativeLayout actionBarLayout = (RelativeLayout) getLayoutInflater().inflate(R.layout.action_bar_layout_mainpage, null);
-
-        Spinner spinnerCity = (Spinner) actionBarLayout.findViewById(R.id.main_spinner_city);
-        String[] category1 = getResources().getStringArray(R.array.spinner_city);
-        ArrayAdapter<String> arrayAdapter_City = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, category1);
-        spinnerCity.setAdapter(arrayAdapter_City);
-
-        ActionBar.LayoutParams params = new ActionBar.LayoutParams(
-                ActionBar.LayoutParams.MATCH_PARENT,
-                ActionBar.LayoutParams.MATCH_PARENT,
-                Gravity.LEFT);
-        ImageButton drawerImageView = (ImageButton) actionBarLayout.findViewById(R.id.action_bar_imgbtn);
-        drawerImageView.setOnClickListener(new View.OnClickListener() {
+        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+        viewPager = (ViewPager) findViewById(R.id.pager);
+        PagerAdapter pagerAdapter = new com.mentobile.homzz.PagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
+        viewPager.setAdapter(pagerAdapter);
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
-            public void onClick(View view) {
-                Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.aplha);
-                view.startAnimation(animation);
-                if (drawerLayout.isDrawerOpen(Gravity.LEFT)) {
-                    drawerLayout.closeDrawer(Gravity.LEFT);
-                } else {
-                    drawerLayout.openDrawer(Gravity.LEFT);
-                }
+            public void onTabSelected(TabLayout.Tab tab) {
+                Toast.makeText(getApplicationContext(), "Tab Selected " + tab.getPosition(), Toast.LENGTH_SHORT).show();
+                viewPager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
             }
         });
-        actionBar.setCustomView(actionBarLayout, params);
-        actionBar.setDisplayHomeAsUpEnabled(false);
     }
 
     private void setProfile() {
         String email = Application.getDataFromSharedPreference(this, Application.SP_LOGIN_LOGOUT, "email");
         if (email != null && email.length() > 5) {
-            NvItems items = (NvItems) arrayList.get(5);
+            NvItems items = (arrNVItems).get(5);
             items.setTitle(getString(R.string.prompt_logout));
-            sMenuAdapter.notifyDataSetChanged();
+            nvAdapter.notifyDataSetChanged();
             Cursor cursor = dbHandler.getPRofileDataFromDB(email);
             while (cursor.moveToNext()) {
                 Profile.getProfile().setFirstName(cursor.getString(0));
                 Profile.getProfile().setLastName(cursor.getString(1));
+                Profile.getProfile().setFullName(cursor.getString(2));
                 Profile.getProfile().setFullName(cursor.getString(2));
                 Profile.getProfile().setEmailID(cursor.getString(3));
                 Profile.getProfile().setMobile(cursor.getString(4));
@@ -184,9 +192,8 @@ public class MainActivity extends Activity implements AdapterView.OnItemClickLis
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        if (parent.getId() == R.id.main_lv_nvdrawer &&
-                (Application.getDataFromSharedPreference(this, Application.SP_LOGIN_LOGOUT, "email") != null)) {
-
+        Toast.makeText(getApplicationContext(), "Item click " + position, Toast.LENGTH_SHORT).show();
+        if (Application.getDataFromSharedPreference(this, Application.SP_LOGIN_LOGOUT, "email") != null) {
             switch (position) {
                 case 0:// header
                     break;
@@ -208,9 +215,9 @@ public class MainActivity extends Activity implements AdapterView.OnItemClickLis
                 case 6:
                     if (Application.getDataFromSharedPreference(this, Application.SP_LOGIN_LOGOUT, "email") != null) {
                         Application.clearSharedPreferenceFile(this, Application.SP_LOGIN_LOGOUT);
-                        NvItems items = (NvItems) arrayList.get(position - 1);
+                        NvItems items = arrNVItems.get(position - 1);
                         items.setTitle(getString(R.string.prompt_login));
-                        sMenuAdapter.notifyDataSetChanged();
+                        nvAdapter.notifyDataSetChanged();
                         tvNVEmail.setText(getString(R.string.prompt_nv_email));
                         tvNVName.setText(getString(R.string.prompt_nv_name));
                         Profile.emptyProfile();
@@ -224,36 +231,27 @@ public class MainActivity extends Activity implements AdapterView.OnItemClickLis
                                 LoginActivity.loginActivity.facebokLogout();
                                 break;
                         }
-
                     }
                     break;
             }
         } else {
+            Log.d(TAG, ":::::Login Activity");
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(intent);
         }
     }
 
     @Override
-    public void onTabSelected(ActionBar.Tab tab, FragmentTransaction ft) {
-
-        switch (tab.getPosition()) {
-            case 0:
-                ft.replace(android.R.id.content, new TrendFragment());
-                break;
-            case 1:
-                ft.replace(android.R.id.content, new SearchFragment());
-                break;
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (mDrawerToggle.onOptionsItemSelected(item)) {
+            return true;
         }
+        return false;
     }
 
     @Override
-    public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction ft) {
-
-    }
-
-    @Override
-    public void onTabReselected(ActionBar.Tab tab, FragmentTransaction ft) {
-
+    public boolean onNavigationItemSelected(int itemPosition, long itemId) {
+        Toast.makeText(getApplicationContext(), " Spinner Item " + itemId, Toast.LENGTH_SHORT).show();
+        return false;
     }
 }

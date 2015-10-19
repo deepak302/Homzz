@@ -145,7 +145,7 @@ public class LoginActivity extends Activity implements View.OnClickListener, Goo
                 .addScope(Plus.SCOPE_PLUS_LOGIN).build();
         mGoogleApiClient.connect();
         Log.d(TAG, ":::::GoogleApiClient " + mGoogleApiClient.isConnected());
-        setCustomActionBar();
+      //  setCustomActionBar();
     }
 
     private void setCustomActionBar() {

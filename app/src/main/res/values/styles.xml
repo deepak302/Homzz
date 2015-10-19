@@ -1,9 +1,76 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
+    <!--<style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">-->
+    <!--&lt;!&ndash; Customize your theme here. &ndash;&gt;-->
+    <!--<item name="android:actionBarStyle">@style/MyActionBar</item>-->
+    <!--</style>-->
+
+    <!--&lt;!&ndash; ActionBar styles &ndash;&gt;-->
+    <!--<style name="MyActionBar" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">-->
+    <!--<item name="android:background">@color/brown</item>-->
+    <!--</style>-->
+
+    <style name="AppTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
+        <!--<item name="actionBarItemBackground">@drawable/selectable_background_style</item>-->
+        <!--<item name="popupMenuStyle">@style/PopupMenu.Style</item>-->
+        <item name="dropDownListViewStyle">@style/DropDownListView.Style</item>
+        <item name="actionBarTabStyle">@style/ActionBarTabStyle.Style</item>
+        <!--<item name="actionDropDownStyle">@style/DropDownNav.Style</item>-->
+        <item name="actionBarStyle">@style/ActionBar.Solid.Style</item>
+        <!--<item name="actionModeBackground">@color/material_deep_teal_500</item>-->
+        <!--<item name="actionModeSplitBackground">@color/material_deep_teal_500</item>-->
+        <!--<item name="actionModeCloseButtonStyle">@style/ActionButton.CloseMode.Style</item>-->
+
+        <!-- Light.DarkActionBar specific -->
+        <!--<item name="actionBarWidgetTheme">@style/Theme.Style.Widget</item>-->
+
     </style>
+
+    <style name="ActionBar.Solid.Style" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
+        <item name="background">@color/material_deep_teal_500</item>
+        <item name="backgroundStacked">@color/material_deep_teal_500</item>
+        <item name="backgroundSplit">@color/material_deep_teal_500</item>
+        <!--<item name="progressBarStyle">@style/ProgressBar.Style</item>-->
+    </style>
+
+    <!--<style name="ActionBar.Transparent.Style" parent="@style/Widget.AppCompat.ActionBar">-->
+        <!--<item name="background">@drawable/ab_transparent_style</item>-->
+        <!--<item name="progressBarStyle">@style/ProgressBar.Style</item>-->
+    <!--</style>-->
+
+    <!--<style name="PopupMenu.Style" parent="@style/Widget.AppCompat.PopupMenu">-->
+        <!--<item name="android:popupBackground">@drawable/menu_dropdown_panel_style</item>-->
+    <!--</style>-->
+
+    <style name="DropDownListView.Style" parent="@style/Widget.AppCompat.ListView.DropDown">
+        <item name="android:listSelector">@drawable/selectable_background_style</item>
+    </style>
+
+    <style name="ActionBarTabStyle.Style" parent="@style/Widget.AppCompat.ActionBar.TabView">
+        <item name="android:background">@drawable/tab_indicator_ab_style</item>
+    </style>
+
+    <!--<style name="DropDownNav.Style" parent="@style/Widget.AppCompat.Spinner.DropDown.ActionBar">-->
+        <!--<item name="android:background">@drawable/spinner_background_ab_style</item>-->
+        <!--<item name="android:popupBackground">@drawable/menu_dropdown_panel_style</item>-->
+        <!--<item name="android:dropDownSelector">@drawable/selectable_background_style</item>-->
+    <!--</style>-->
+
+    <!--<style name="ProgressBar.Style" parent="@style/Widget.AppCompat.ProgressBar.Horizontal">-->
+        <!--<item name="android:progressDrawable">@drawable/progress_horizontal_style</item>-->
+    <!--</style>-->
+
+    <!--<style name="ActionButton.CloseMode.Style" parent="@style/Widget.AppCompat.ActionButton.CloseMode">-->
+        <!--<item name="android:background">@drawable/btn_cab_done_style</item>-->
+    <!--</style>-->
+
+    <!-- this style is only referenced in a Light.DarkActionBar based theme -->
+    <!--<style name="Theme.Style.Widget" parent="@style/Theme.AppCompat">-->
+        <!--<item name="popupMenuStyle">@style/PopupMenu.Style</item>-->
+        <!--<item name="dropDownListViewStyle">@style/DropDownListView.Style</item>-->
+    <!--</style>-->
+
 
     <style name="textview_header">
         <item name="android:layout_width">match_parent</item>
@@ -20,11 +87,11 @@
     <style name="textview_simple_text">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">20dp</item>
+        <item name="android:textSize">18dp</item>
         <item name="android:layout_marginLeft">20dp</item>
         <item name="android:layout_marginRight">20dp</item>
-        <item name="android:layout_marginTop">15dp</item>
-        <item name="android:layout_marginBottom">15dp</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginBottom">10dp</item>
         <item name="android:textColor">@color/bg_button_login</item>
     </style>
 
@@ -33,11 +100,5 @@
         <item name="android:textColor">@color/white</item>
         <item name="android:textAllCaps">true</item>
     </style>
-
-
-    <style name="TabBar">
-        <item name="android:background">#00ff00</item>
-    </style>
-
 
 </resources>

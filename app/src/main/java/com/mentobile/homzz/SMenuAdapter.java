@@ -41,7 +41,6 @@ public class SMenuAdapter extends ArrayAdapter<NvItems> {
 		// TODO Auto-generated method stub
 		return id;
 	}
-	private int value = 2 ;
 
 	@Override
 	public View getView(int position, View convertview, ViewGroup viewGroup) {
@@ -60,13 +59,11 @@ public class SMenuAdapter extends ArrayAdapter<NvItems> {
 			gridView.setTag(holder);
 		} else {
 			holder = (RecordHolder) gridView.getTag();
-			value = 5 ;
 		}
 		NvItems item = arrayList.get(position);
 		holder.imageView.setBackgroundResource(item.getImage());
 		holder.textview.setText(item.getTitle());
 		return gridView;
-
 	}
 
 	static class RecordHolder {
