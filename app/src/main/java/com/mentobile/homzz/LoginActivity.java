@@ -4,8 +4,6 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
@@ -16,9 +14,13 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -60,7 +62,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 
-public class LoginActivity extends Activity implements View.OnClickListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
     private final String TAG = "LoginActivity";
     private Button btnLogin;
@@ -76,8 +78,10 @@ public class LoginActivity extends Activity implements View.OnClickListener, Goo
     public static LoginActivity loginActivity;
     public static int LOGIN_TYPE = 0;
 
-    public LoginActivity() {
-        // Required empty public constructor
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 
     @Override
@@ -105,6 +109,16 @@ public class LoginActivity extends Activity implements View.OnClickListener, Goo
     }
 
     @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -116,6 +130,12 @@ public class LoginActivity extends Activity implements View.OnClickListener, Goo
         // End facebook initialize
 
         setContentView(R.layout.activity_login);
+
+        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+        actionBar.setHomeButtonEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setTitle("Login Account");
+
         loginActivity = this;
         cProgressDialog = new CProgressDialog(LoginActivity.this);
         btnLogin = (Button) findViewById(R.id.login_btn_login);
@@ -145,7 +165,7 @@ public class LoginActivity extends Activity implements View.OnClickListener, Goo
                 .addScope(Plus.SCOPE_PLUS_LOGIN).build();
         mGoogleApiClient.connect();
         Log.d(TAG, ":::::GoogleApiClient " + mGoogleApiClient.isConnected());
-      //  setCustomActionBar();
+        //  setCustomActionBar();
     }
 
     private void setCustomActionBar() {
@@ -229,6 +249,7 @@ public class LoginActivity extends Activity implements View.OnClickListener, Goo
                                 Application.setDataInSharedPreference(LoginActivity.this, Application.SP_LOGIN_LOGOUT, "email",
                                         edUserName.getText().toString().trim());
                                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 finish();
                                 startActivity(intent);
@@ -240,11 +261,9 @@ public class LoginActivity extends Activity implements View.OnClickListener, Goo
                 }
                 break;
             case R.id.login_btn_signup:
-                FragmentManager manager = getFragmentManager();
-                FragmentTransaction transaction = manager.beginTransaction();
-                transaction.replace(android.R.id.content, new SignupFragment());
-                transaction.addToBackStack(null);
-                transaction.commit();
+                Intent intent = new Intent(this, SignupActivity.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
                 break;
             case R.id.login_btn_facebook:
                 facebookLogin();

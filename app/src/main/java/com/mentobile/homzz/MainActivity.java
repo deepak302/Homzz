@@ -31,9 +31,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mentobile.utility.DBHandler;
+
 import java.util.ArrayList;
 
-public class MainActivity extends ActionBarActivity implements AdapterView.OnItemClickListener,ActionBar.OnNavigationListener {
+public class MainActivity extends ActionBarActivity implements AdapterView.OnItemClickListener, ActionBar.OnNavigationListener {
 
     private String TAG = "MainActivity";
 
@@ -235,9 +236,9 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
                     break;
             }
         } else {
-            Log.d(TAG, ":::::Login Activity");
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(intent);
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
         }
     }
 

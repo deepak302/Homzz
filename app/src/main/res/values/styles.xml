@@ -12,25 +12,26 @@
     <!--</style>-->
 
     <style name="AppTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
-        <!--<item name="actionBarItemBackground">@drawable/selectable_background_style</item>-->
+        <item name="actionBarItemBackground">@drawable/selectable_background_style</item>
         <!--<item name="popupMenuStyle">@style/PopupMenu.Style</item>-->
         <item name="dropDownListViewStyle">@style/DropDownListView.Style</item>
         <item name="actionBarTabStyle">@style/ActionBarTabStyle.Style</item>
         <!--<item name="actionDropDownStyle">@style/DropDownNav.Style</item>-->
         <item name="actionBarStyle">@style/ActionBar.Solid.Style</item>
-        <!--<item name="actionModeBackground">@color/material_deep_teal_500</item>-->
-        <!--<item name="actionModeSplitBackground">@color/material_deep_teal_500</item>-->
-        <!--<item name="actionModeCloseButtonStyle">@style/ActionButton.CloseMode.Style</item>-->
+        <item name="actionModeBackground">@color/background_floating_material_dark</item>
+        <item name="actionModeSplitBackground">@color/background_floating_material_dark</item>
+        <item name="actionModeCloseButtonStyle">@style/ActionButton.CloseMode.Style</item>
 
-        <!-- Light.DarkActionBar specific -->
-        <!--<item name="actionBarWidgetTheme">@style/Theme.Style.Widget</item>-->
+        // Light.DarkActionBar specific
+        <item name="actionBarWidgetTheme">@style/Theme.Style.Widget</item>
+        <item name="android:screenOrientation">portrait</item>
 
     </style>
 
     <style name="ActionBar.Solid.Style" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
-        <item name="background">@color/material_deep_teal_500</item>
-        <item name="backgroundStacked">@color/material_deep_teal_500</item>
-        <item name="backgroundSplit">@color/material_deep_teal_500</item>
+        <item name="background">@color/background_floating_material_dark</item>
+        <item name="backgroundStacked">@color/background_floating_material_dark</item>
+        <item name="backgroundSplit">@color/background_floating_material_dark</item>
         <!--<item name="progressBarStyle">@style/ProgressBar.Style</item>-->
     </style>
 
@@ -51,25 +52,26 @@
         <item name="android:background">@drawable/tab_indicator_ab_style</item>
     </style>
 
-    <!--<style name="DropDownNav.Style" parent="@style/Widget.AppCompat.Spinner.DropDown.ActionBar">-->
-    <!--<item name="android:background">@drawable/spinner_background_ab_style</item>-->
-    <!--<item name="android:popupBackground">@drawable/menu_dropdown_panel_style</item>-->
-    <!--<item name="android:dropDownSelector">@drawable/selectable_background_style</item>-->
-    <!--</style>-->
+    <style name="DropDownNav.Style" parent="@style/Widget.AppCompat.Spinner.DropDown.ActionBar">
+        <item name="android:background">@drawable/spinner_background_ab_style</item>
+        <item name="android:popupBackground">@drawable/menu_dropdown_panel_style</item>
+        <item name="android:dropDownSelector">@drawable/selectable_background_style</item>
+    </style>
 
     <!--<style name="ProgressBar.Style" parent="@style/Widget.AppCompat.ProgressBar.Horizontal">-->
     <!--<item name="android:progressDrawable">@drawable/progress_horizontal_style</item>-->
     <!--</style>-->
 
-    <!--<style name="ActionButton.CloseMode.Style" parent="@style/Widget.AppCompat.ActionButton.CloseMode">-->
-    <!--<item name="android:background">@drawable/btn_cab_done_style</item>-->
-    <!--</style>-->
+    <style name="ActionButton.CloseMode.Style" parent="@style/Widget.AppCompat.ActionButton.CloseMode">
+        <item name="android:background">@drawable/btn_cab_done_style</item>
+    </style>
 
-    <!-- this style is only referenced in a Light.DarkActionBar based theme -->
-    <!--<style name="Theme.Style.Widget" parent="@style/Theme.AppCompat">-->
-    <!--<item name="popupMenuStyle">@style/PopupMenu.Style</item>-->
-    <!--<item name="dropDownListViewStyle">@style/DropDownListView.Style</item>-->
-    <!--</style>-->
+    <!--//this style is only referenced in a Light.DarkActionBar based theme-->
+
+    <style name="Theme.Style.Widget" parent="@style/Theme.AppCompat">
+        <!--<item name="popupMenuStyle">@style/PopupMenu.Style</item>-->
+        <item name="dropDownListViewStyle">@style/DropDownListView.Style</item>
+    </style>
 
 
     <style name="textview_header">

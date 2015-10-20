@@ -1,0 +1,115 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    tools:context=".SignupFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/signup_img_account"
+            android:layout_marginTop="10dp">
+
+            <EditText
+                android:id="@+id/signup_ed_fname"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/edittext_design"
+                android:cursorVisible="true"
+                android:hint="@string/prompt_ed_full_name"
+                android:inputType="textCapSentences"
+                android:singleLine="true"
+                android:textCursorDrawable="@color/abc_search_url_text_normal" />
+
+
+            <EditText
+                android:id="@+id/signup_ed_email"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/signup_ed_fname"
+                android:layout_margin="10dp"
+                android:autoLink="email"
+                android:background="@drawable/edittext_design"
+                android:hint="@string/prompt_ed_email"
+                android:inputType="textEmailAddress"
+                android:singleLine="true" />
+
+            <EditText
+                android:id="@+id/signup_ed_mobile"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/signup_ed_email"
+                android:layout_margin="10dp"
+                android:autoLink="phone"
+                android:background="@drawable/edittext_design"
+                android:hint="@string/prompt_ed_mobile"
+                android:inputType="phone"
+                android:maxLength="10"
+                android:phoneNumber="true"
+                android:singleLine="true" />
+
+
+            <EditText
+                android:id="@+id/signup_ed_password"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/signup_ed_mobile"
+                android:layout_margin="10dp"
+                android:background="@drawable/edittext_design"
+                android:hint="@string/prompt_ed_password"
+                android:singleLine="true" />
+
+            <EditText
+                android:id="@+id/signup_ed_cpassword"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/signup_ed_password"
+                android:layout_margin="10dp"
+                android:background="@drawable/edittext_design"
+                android:hint="@string/prompt_ed_cpassword"
+                android:singleLine="true" />
+
+
+            <EditText
+                android:id="@+id/signup_ed_city"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/signup_ed_cpassword"
+                android:layout_margin="10dp"
+                android:background="@drawable/edittext_design"
+                android:hint="@string/prompt_ed_city"
+                android:inputType="text"
+                android:singleLine="true" />
+
+            <CheckBox
+                android:id="@+id/signup_chk_tc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/signup_ed_city"
+                android:layout_marginTop="20dp"
+                android:checked="false"
+                android:clickable="true"
+                android:text="@string/prompt_chk_tc" />
+
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+    <Button
+        android:id="@+id/signup_btn_createaccount"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="10dp"
+        android:background="@drawable/button_selector"
+        android:text="@string/prompt_btn_create_account"
+        android:textColor="#ffffff" />
+
+</RelativeLayout>
