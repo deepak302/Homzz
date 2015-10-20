@@ -31,10 +31,10 @@ public class NnDrawerActivity extends Activity implements AdapterView.OnItemClic
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nn_drawer);
-        mHorizontal = (HorizontalListView) findViewById(R.id.horizontal);
-        CustomArrayAdapter customArrayAdapter = new CustomArrayAdapter(this, mCustomData);
-        mHorizontal.setAdapter(customArrayAdapter);
-        mHorizontal.setOnItemClickListener(this);
+//        mHorizontal = (HorizontalListView) findViewById(R.id.horizontal);
+//        CustomArrayAdapter customArrayAdapter = new CustomArrayAdapter(this, mCustomData);
+//        mHorizontal.setAdapter(customArrayAdapter);
+//        mHorizontal.setOnItemClickListener(this);
     }
 
     @Override

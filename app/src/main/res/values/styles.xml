@@ -35,12 +35,12 @@
     </style>
 
     <!--<style name="ActionBar.Transparent.Style" parent="@style/Widget.AppCompat.ActionBar">-->
-        <!--<item name="background">@drawable/ab_transparent_style</item>-->
-        <!--<item name="progressBarStyle">@style/ProgressBar.Style</item>-->
+    <!--<item name="background">@drawable/ab_transparent_style</item>-->
+    <!--<item name="progressBarStyle">@style/ProgressBar.Style</item>-->
     <!--</style>-->
 
     <!--<style name="PopupMenu.Style" parent="@style/Widget.AppCompat.PopupMenu">-->
-        <!--<item name="android:popupBackground">@drawable/menu_dropdown_panel_style</item>-->
+    <!--<item name="android:popupBackground">@drawable/menu_dropdown_panel_style</item>-->
     <!--</style>-->
 
     <style name="DropDownListView.Style" parent="@style/Widget.AppCompat.ListView.DropDown">
@@ -52,23 +52,23 @@
     </style>
 
     <!--<style name="DropDownNav.Style" parent="@style/Widget.AppCompat.Spinner.DropDown.ActionBar">-->
-        <!--<item name="android:background">@drawable/spinner_background_ab_style</item>-->
-        <!--<item name="android:popupBackground">@drawable/menu_dropdown_panel_style</item>-->
-        <!--<item name="android:dropDownSelector">@drawable/selectable_background_style</item>-->
+    <!--<item name="android:background">@drawable/spinner_background_ab_style</item>-->
+    <!--<item name="android:popupBackground">@drawable/menu_dropdown_panel_style</item>-->
+    <!--<item name="android:dropDownSelector">@drawable/selectable_background_style</item>-->
     <!--</style>-->
 
     <!--<style name="ProgressBar.Style" parent="@style/Widget.AppCompat.ProgressBar.Horizontal">-->
-        <!--<item name="android:progressDrawable">@drawable/progress_horizontal_style</item>-->
+    <!--<item name="android:progressDrawable">@drawable/progress_horizontal_style</item>-->
     <!--</style>-->
 
     <!--<style name="ActionButton.CloseMode.Style" parent="@style/Widget.AppCompat.ActionButton.CloseMode">-->
-        <!--<item name="android:background">@drawable/btn_cab_done_style</item>-->
+    <!--<item name="android:background">@drawable/btn_cab_done_style</item>-->
     <!--</style>-->
 
     <!-- this style is only referenced in a Light.DarkActionBar based theme -->
     <!--<style name="Theme.Style.Widget" parent="@style/Theme.AppCompat">-->
-        <!--<item name="popupMenuStyle">@style/PopupMenu.Style</item>-->
-        <!--<item name="dropDownListViewStyle">@style/DropDownListView.Style</item>-->
+    <!--<item name="popupMenuStyle">@style/PopupMenu.Style</item>-->
+    <!--<item name="dropDownListViewStyle">@style/DropDownListView.Style</item>-->
     <!--</style>-->
 
 
@@ -88,10 +88,17 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">18dp</item>
-        <item name="android:layout_marginLeft">20dp</item>
-        <item name="android:layout_marginRight">20dp</item>
-        <item name="android:layout_marginTop">10dp</item>
-        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:textColor">@color/bg_button_login</item>
+    </style>
+
+    <style name="textview_trend_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">15dp</item>
+        <item name="android:layout_margin">5dp</item>
         <item name="android:textColor">@color/bg_button_login</item>
     </style>
 

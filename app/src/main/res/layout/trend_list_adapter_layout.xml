@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="220dp"
+    android:weightSum="4">
+
+    <ImageView
+        android:id="@+id/trend_imgv_banner"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:layout_weight="2.5"
+        android:layout_gravity="center_vertical"
+        android:background="@mipmap/bg" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.5"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/trend_tv_builder_name"
+            style="@style/textview_trend_text"
+            android:text="Builder Name"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/trend_tv_location"
+            style="@style/textview_trend_text"
+            android:text="Location" />
+
+        <TextView
+            android:id="@+id/trend_tv_sqft"
+            style="@style/textview_trend_text"
+            android:text="500 sq ft" />
+
+        <TextView
+            android:id="@+id/trend_tv_price"
+            style="@style/textview_trend_text"
+            android:text="30 Lacs" />
+
+    </LinearLayout>
+
+</LinearLayout>

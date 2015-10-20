@@ -2,22 +2,17 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
     android:orientation="vertical">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="100dp"
         android:text="Hello World"
         android:textSize="30dp" />
 
-    <com.mentobile.utility.HorizontalListView
-        android:id="@+id/horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:divider="#e00"
-        android:fadingEdgeLength="5dp"
-        android:requiresFadingEdge="horizontal" />
+    <ListView
+        android:id="@+id/trend_listview1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"></ListView>
 </LinearLayout>
