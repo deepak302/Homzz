@@ -1,9 +1,238 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context="com.mentobile.homzz.ProjectDetailActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/prj_dtl_btn_send_msg">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/prj_dtl_viewpager"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@color/green"
+                android:visibility="visible" />
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TableRow android:layout_weight="2">
+
+                    <TextView
+                        style="@style/textview_project_detail_type_info"
+                        android:text="Type" />
+
+                    <TextView
+                        android:id="@+id/prj_dtl_tv_type"
+                        style="@style/textview_project_detail_type_info_result"
+                        android:text="Apartment" />
+                </TableRow>
+
+                <TableRow android:layout_weight="2">
+
+                    <TextView
+                        style="@style/textview_project_detail_type_info"
+                        android:text="Price" />
+
+                    <TextView
+                        android:id="@+id/prj_dtl_tv_price"
+                        style="@style/textview_project_detail_type_info_result"
+                        android:text="Rs. 34 L" />
+                </TableRow>
+
+                <TableRow android:layout_weight="2">
+
+                    <TextView
+                        style="@style/textview_project_detail_type_info"
+                        android:text="Area Price(Sq.Ft)" />
+
+                    <TextView
+                        android:id="@+id/prj_dtl_tv_area_price"
+                        style="@style/textview_project_detail_type_info_result"
+                        android:text="Rs. 6450" />
+                </TableRow>
+
+                <TableRow android:layout_weight="2">
+
+                    <TextView
+                        style="@style/textview_project_detail_type_info"
+                        android:text="Address" />
+
+                    <TextView
+                        android:id="@+id/prj_dtl_tv_address"
+                        style="@style/textview_project_detail_type_info_result"
+                        android:text="Sector 5 \nGurgaon, Haryana" />
+                </TableRow>
+
+                <TableRow android:layout_weight="2">
+
+                    <TextView
+                        style="@style/textview_project_detail_type_info"
+                        android:text="Transaction" />
+
+                    <TextView
+                        android:id="@+id/prj_dtl_tv_transaction"
+                        style="@style/textview_project_detail_type_info_result"
+                        android:text="New Booking" />
+                </TableRow>
+
+                <TableRow android:layout_weight="2">
+
+                    <TextView
+                        style="@style/textview_project_detail_type_info"
+                        android:text="Possession" />
+
+                    <TextView
+                        android:id="@+id/prj_dtl_tv_possession"
+                        style="@style/textview_project_detail_type_info_result"
+                        android:text="By 2019" />
+                </TableRow>
+
+                <TableRow android:layout_weight="2">
+
+                    <TextView
+                        style="@style/textview_project_detail_type_info"
+                        android:text="Ownership" />
+
+                    <TextView
+                        android:id="@+id/prj_dtl_tv_ownership"
+                        style="@style/textview_project_detail_type_info_result"
+                        android:text="Freehold" />
+                </TableRow>
+
+                <TableRow android:layout_weight="2">
+
+                    <TextView
+                        style="@style/textview_project_detail_type_info"
+                        android:text="Property Age" />
+
+                    <TextView
+                        android:id="@+id/prj_dtl_tv_property_age"
+                        style="@style/textview_project_detail_type_info_result"
+                        android:text="Under Construction" />
+                </TableRow>
+
+                <TableRow android:layout_weight="2">
+
+                    <TextView
+                        style="@style/textview_project_detail_type_info"
+                        android:text="Floor No" />
+
+                    <TextView
+                        android:id="@+id/prj_dtl_tv_floor_number"
+                        style="@style/textview_project_detail_type_info_result"
+                        android:text="1st of 20 Floors" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/counter_text_color"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="Property Description:"
+                        android:textColor="@color/bg_gradient_start"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                </TableRow>
+
+                <TableRow android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/prj_dtl_tv_property_description"
+                        style="@style/textview_project_detail_type_info_result"
+                        android:text="This property is the residential apartment in gurgaon.This is the uncoming project in sector 56" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/counter_text_color"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Dealer Details:"
+                        android:textColor="@color/bg_gradient_start"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                </TableRow>
+
+                <TableRow android:layout_weight="4">
+
+                    <ImageButton
+                        android:id="@+id/prj_dtl_imgv_dealer_photo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.5"
+                        android:background="@mipmap/ic_launcher" />
+
+                    <TextView
+                        style="@style/textview_header"
+                        android:layout_weight="2.5"
+                        android:text="Builder Name"
+                        android:textAllCaps="true" />
+
+                </TableRow>
+
+                <TableRow android:layout_weight="1">
+
+                    <TextView
+                        style="@style/textview_project_detail_type_info"
+                        android:text="Address:" />
+                </TableRow>
+
+                <TableRow android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/prj_dtl_tv_builder_address"
+                        style="@style/textview_project_detail_type_info_result"
+                        android:text="158, Part 6, Sector 5, Gurgaon, Haryana" />
+                </TableRow>
+
+                <TableRow android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/prj_dtl_tv_builder_about"
+                        style="@style/textview_project_detail_type_info"
+                        android:text="Abount Company:" />
+                </TableRow>
+
+                <TableRow android:layout_weight="1">
+
+                    <TextView
+                        style="@style/textview_project_detail_type_info_result"
+                        android:text="JLL is a financial and professional services from specilization in commericial real state services and invest managemant" />
+                </TableRow>
+            </TableLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/prj_dtl_btn_send_msg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/button_selector"
+        android:text="Send Message"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
 
 </RelativeLayout>

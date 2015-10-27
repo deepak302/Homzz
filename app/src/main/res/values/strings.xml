@@ -43,6 +43,8 @@
     <string name="progress_reset_password">Password Reset</string>
 
     <string name="prompt_tv_any"><u>Any</u></string>
+    <string name="spinner_select_locality">Select Locality</string>
+    <string name="actionbar_done">Done</string>
 
     //Navigation Drawer
 
@@ -71,18 +73,23 @@
     </string-array>
 
     <string-array name="action_tab_name">
-        <item>Trends</item>
+        <item>Trending</item>
         <item>Search</item>
     </string-array>
 
     //SeacrhView
 
     <string name="search_city">Location/Developer/Project name</string>
+    <string name="search_location">Search Location</string>
     <string name="demo_min_label">Min</string>
     <string name="demo_max_label">Max</string>
     <string name="title_activity_nn_drawer">NnDrawerActivity</string>
     <string name="title_activity_project_detail">ProjectDetailActivity</string>
     <string name="title_activity_project_list">ProjectListActivity</string>
+    <string name="title_activity_send_msg">SendMsgActivity</string>
+    <string name="title_activity_search_data">SearchDataActivity</string>
+    <string name="title_activity_search">SearchActivity</string>
+    <string name="title_activity_favourite">FavouriteActivity</string>
 
 
 </resources>

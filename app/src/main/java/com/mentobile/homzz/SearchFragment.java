@@ -1,16 +1,14 @@
 package com.mentobile.homzz;
 
-import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
@@ -19,8 +17,6 @@ import android.widget.Toast;
 
 import com.mentobile.utility.RangeSeekBar;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 
 public class SearchFragment extends Fragment implements View.OnClickListener {
@@ -28,7 +24,8 @@ public class SearchFragment extends Fragment implements View.OnClickListener {
     final String TAG = "SearchFragment";
     private Spinner spinnerCity;
     private EditText edSearchLocation;
-    private RangeSeekBar rangeSeekBar1;
+
+    private Button btnSearch;
 
     private ArrayList<String> arrListFilter = new ArrayList<>();
     private TextView tvBDAny;
@@ -49,15 +46,9 @@ public class SearchFragment extends Fragment implements View.OnClickListener {
     private TextView tvListAgent;
     private TextView tvListBuilder;
 
-    AutoCompleteTextView textView=null;
+    EditText edSearchAny;
+    EditText edSearchLocality;
     private ArrayAdapter<String> adapter;
-
-    //These values show in autocomplete
-    String item[]={
-            "January", "February", "March", "April",
-            "May", "June", "July", "August",
-            "September", "October", "November", "December"
-    };
 
     public SearchFragment() {
         // Required empty public constructor
@@ -83,6 +74,9 @@ public class SearchFragment extends Fragment implements View.OnClickListener {
                 Toast.makeText(getActivity(), "Min Value " + minValue + " Max " + maxValue, Toast.LENGTH_SHORT).show();
             }
         });
+
+        btnSearch = (Button) view.findViewById(R.id.search_btn_search);
+        btnSearch.setOnClickListener(this);
 
         // Add to layout
         LinearLayout layout = (LinearLayout) view.findViewById(R.id.seekbar_testing);
@@ -137,10 +131,14 @@ public class SearchFragment extends Fragment implements View.OnClickListener {
         tvListBuilder = (TextView) view.findViewById(R.id.search_tv_list_builder);
         tvListBuilder.setOnClickListener(this);
 
-        textView = (AutoCompleteTextView)view.findViewById(R.id.Months);
-        adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_dropdown_item_1line, item);
-        textView.setAdapter(adapter);
+        edSearchAny = (EditText) view.findViewById(R.id.search_ed_anyType);
+        edSearchAny.setOnClickListener(this);
 
+        edSearchLocality = (EditText) view.findViewById(R.id.search_ed_locality);
+        edSearchLocality.setOnClickListener(this);
+
+//        adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_dropdown_item_1line, item);
+//        textView.setAdapter(adapter);
         return view;
     }
 
@@ -201,6 +199,28 @@ public class SearchFragment extends Fragment implements View.OnClickListener {
             case R.id.search_tv_list_builder:
                 setTVButton(tvListBuilder, id);
                 break;
+
+            // EditText
+
+            case R.id.search_ed_anyType:
+                Intent intentSearch = new Intent(getActivity(), SearchActivity.class);
+                startActivity(intentSearch);
+                getActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                break;
+            case R.id.search_ed_locality:
+                Intent intentLocality = new Intent(getActivity(), SearchLocalityActivity.class);
+                startActivity(intentLocality);
+                getActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                break;
+
+            // Button
+
+            case R.id.search_btn_search:
+                Intent intent = new Intent(getActivity(), ProjectListActivity.class);
+                startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                break;
+
         }
     }
 

@@ -7,10 +7,12 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -21,16 +23,19 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mentobile.utility.DBHandler;
+import com.mentobile.utility.UpdateNotification;
 
 import java.util.ArrayList;
 
@@ -138,7 +143,7 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
         }
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         viewPager = (ViewPager) findViewById(R.id.pager);
-        PagerAdapter pagerAdapter = new com.mentobile.homzz.PagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
+        MyTabPagerAdapter pagerAdapter = new MyTabPagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(pagerAdapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -236,9 +241,13 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
                     break;
             }
         } else {
+
+//            mNotificationCount = 10;
+//            invalidateOptionsMenu();
+
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(intent);
-            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         }
     }
 
@@ -247,7 +256,37 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
         if (mDrawerToggle.onOptionsItemSelected(item)) {
             return true;
         }
-        return false;
+        switch (item.getItemId()) {
+            case R.id.action_done:
+                Log.d(TAG, ":::::Done Clicked");
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private int mNotificationCount = 5;
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        MenuItem item = menu.findItem(R.id.action_notifications);
+        LayerDrawable layerDrawable = (LayerDrawable) item.getIcon();
+
+        UpdateNotification.setBadgeCount(this, layerDrawable, mNotificationCount);
+
+//        MenuInflater menuInflater = getMenuInflater();
+//        menuInflater.inflate(R.menu.menu_main, menu);
+//
+//        MenuItem item = menu.findItem(R.id.action_cart);
+//        MenuItemCompat.setActionView(item, R.layout.layout_heart);
+//
+//        RelativeLayout relativeLayout = (RelativeLayout) MenuItemCompat.getActionView(item);
+//
+//        TextView textView = (TextView) relativeLayout.findViewById(R.id.gsss);
+//        textView.setText("10");
+
+        return true;
     }
 
     @Override

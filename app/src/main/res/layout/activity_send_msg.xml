@@ -1,0 +1,153 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.mentobile.homzz.SendMsgActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/send_msg_btn_send"
+        android:layout_alignParentTop="true">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp">
+
+            <TableRow android:layout_weight="3">
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:background="@mipmap/ic_launcher" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="Builder Name"
+                    android:textAllCaps="true"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+            </TableRow>
+
+
+            <TableRow
+
+                android:layout_weight="1">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/black" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    style="@style/textview_simple_text"
+                    android:text="I am" />
+            </TableRow>
+
+            <TableRow android:layout_weight="2">
+
+                <RadioGroup
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/send_msg_rb_individual"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Individual" />
+
+                    <RadioButton
+                        android:id="@+id/send_msg_rb_dealer"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Dealer" />
+                </RadioGroup>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_marginTop="20dp"
+                android:layout_weight="3">
+
+                <TextView
+                    style="@style/textview_project_detail_type_info"
+                    android:layout_weight="1"
+                    android:text="Name" />
+
+                <EditText
+                    android:layout_weight="2"
+                    android:hint="Name" />
+            </TableRow>
+
+            <TableRow android:layout_weight="3">
+
+                <TextView
+                    style="@style/textview_project_detail_type_info"
+                    android:layout_weight="1"
+                    android:text="Email" />
+
+                <EditText
+                    android:layout_weight="2"
+                    android:hint="Email Id" />
+            </TableRow>
+
+            <TableRow android:layout_weight="3">
+
+                <TextView
+                    style="@style/textview_project_detail_type_info"
+                    android:layout_weight="1"
+                    android:text="Mobile" />
+
+                <EditText
+                    android:layout_weight="2"
+                    android:hint="Mobile Number" />
+            </TableRow>
+
+            <TableRow android:layout_weight="3">
+
+                <TextView
+                    style="@style/textview_project_detail_type_info"
+                    android:layout_weight="1"
+                    android:text="Message" />
+
+                <EditText
+                    android:layout_weight="2"
+                    android:hint="Your Message" />
+            </TableRow>
+
+            <TableRow>
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="I allow Homzz and affiliates to contact me"
+                    android:textColor="@color/bg_button_login"
+                    android:textSize="16sp" />
+            </TableRow>
+        </TableLayout>
+
+    </ScrollView>
+
+    <Button
+        android:id="@+id/send_msg_btn_send"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/button_selector"
+        android:text="Send Message"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
+
+</RelativeLayout>

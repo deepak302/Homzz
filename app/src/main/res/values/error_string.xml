@@ -10,7 +10,7 @@
     <string name="error_mobile">Invalid Phone Number</string>
     <string name="error_cpassword">Please enter Valid Confirm Password</string>
     <string name="error_city">"City name can't be blank"</string>
-    <string name="error_network">Oops, \n You seem to have gone out of netwiork covrage. Please check your wifi setting or mobile data connection.</string>
+    <string name="error_network">Oops, \n You seem to have gone out of network coverage. Please check your wifi setting or mobile data connection.</string>
 
     //Toast Message
     <string name="msg_bucket_item">Please add any Item to Bucket</string>

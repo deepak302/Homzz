@@ -1,0 +1,18 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.mentobile.homzz.SearchActivity">
+
+    <AutoCompleteTextView
+        android:id="@+id/search_actv_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:drawableRight="@android:drawable/ic_menu_search"
+        android:hint="@string/search_city"
+        android:singleLine="true"
+        android:textColorHint="@color/counter_text_bg"
+        android:textStyle="normal" />
+
+</RelativeLayout>

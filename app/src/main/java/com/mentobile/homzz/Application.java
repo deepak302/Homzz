@@ -25,7 +25,7 @@ import java.util.regex.Pattern;
  */
 public class Application {
 
-    public final static String URL = "http://www.geekytechsupport.com/rest_db/";
+    public final static String URL = "http://www.mentobile.com/homzz/";
     public final static String SP_LOGIN_LOGOUT = "login_logout";
 
     private static URL url = null;

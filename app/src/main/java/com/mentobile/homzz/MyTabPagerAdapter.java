@@ -8,10 +8,10 @@ import android.util.Log;
 /**
  * Created by user on 10/18/2015.
  */
-public class PagerAdapter extends FragmentStatePagerAdapter {
+public class MyTabPagerAdapter extends FragmentStatePagerAdapter {
     private final int numOfTabs;
 
-    public PagerAdapter(FragmentManager fm, int numOfTabs) {
+    public MyTabPagerAdapter(FragmentManager fm, int numOfTabs) {
         super(fm);
         this.numOfTabs = numOfTabs;
     }

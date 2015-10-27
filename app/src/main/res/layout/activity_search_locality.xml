@@ -1,0 +1,40 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    android:orientation="vertical"
+    tools:context="com.mentobile.homzz.SearchLocalityActivity">
+
+    <!-- <EditText
+         android:id="@+id/search_ed_selected_keywords"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_marginTop="10dp"
+         android:drawableRight="@android:drawable/ic_menu_search"
+         android:hint="@string/search_location"
+         android:background="@drawable/edittext_design"
+         android:singleLine="true"
+         android:textColorHint="@color/counter_text_bg"
+         android:textStyle="normal" />-->
+
+    <EditText
+        android:id="@+id/search_ed_locality"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/edittext_design"
+        android:drawableRight="@android:drawable/ic_menu_search"
+        android:hint="@string/search_location"
+        android:singleLine="true"
+        android:textColorHint="@color/counter_text_bg"
+        android:textStyle="normal" />
+
+    <ListView
+        android:id="@+id/search_lv_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:dividerHeight="0dp" />
+
+</LinearLayout>

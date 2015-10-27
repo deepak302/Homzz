@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -38,7 +37,7 @@ public class TrendFragment extends Fragment implements AdapterView.OnItemClickLi
             TrendItem trendItem = new TrendItem(null, "Builder Name " + i, "Location " + i, "50" + i + "sq ft", "30" + i + " Lacs");
             arrTrendItems.add(trendItem);
         }
-        trendListAdapter = new TrendListAdapter(getActivity(), R.layout.trend_list_adapter_layout, arrTrendItems);
+        trendListAdapter = new TrendListAdapter(getActivity(), R.layout.layout_trend_items, arrTrendItems);
         listView.setAdapter(trendListAdapter);
         listView.setOnItemClickListener(this);
         return view;

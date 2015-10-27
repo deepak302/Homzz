@@ -1,4 +1,5 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -28,16 +29,29 @@
                  android:singleLine="true"
                  android:textColorHint="@color/counter_text_bg" />-->
 
-            <AutoCompleteTextView
-                android:id="@+id/Months"
+            <EditText
+                android:id="@+id/search_ed_anyType"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:background="@drawable/edittext_design"
+                android:drawableRight="@android:drawable/ic_menu_search"
+                android:focusable="false"
                 android:hint="@string/search_city"
                 android:singleLine="true"
-                android:textColorHint="@color/counter_text_bg"
-                android:textStyle="normal" />
+                android:textColorHint="@color/counter_text_bg" />
+
+            <EditText
+                android:id="@+id/search_ed_locality"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/edittext_design"
+                android:drawableRight="@drawable/spinner_ab_pressed_style"
+                android:focusable="false"
+                android:hint="@string/spinner_select_locality"
+                android:singleLine="true"
+                android:textColorHint="@color/counter_text_bg" />
 
             <TextView
                 android:id="@+id/search_tv_propertytype"
