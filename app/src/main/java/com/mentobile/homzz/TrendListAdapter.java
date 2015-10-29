@@ -1,18 +1,13 @@
 package com.mentobile.homzz;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.media.Image;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -73,12 +68,13 @@ public class TrendListAdapter extends ArrayAdapter<TrendItem> {
         }
 
         // Populate the text
-        TrendItem trendItem = arrayList.get(position);
+        TrendItem TrendItem = arrayList.get(position);
         holder.imageView.setBackgroundResource(R.mipmap.bg);
-        holder.tvBuilderName.setText(trendItem.getBuilderName());
-        holder.tvLocation.setText(trendItem.getLocation());
-        holder.tvArea.setText(trendItem.getArea());
-        holder.tvPrice.setText(trendItem.getPrice());
+        holder.tvBuilderName.setText(TrendItem.getBuilderName());
+        holder.tvLocation.setText(TrendItem.getLocation());
+        holder.tvArea.setText(TrendItem.getArea());
+        holder.tvPrice.setText(TrendItem.getPrice());
+
         return view;
     }
 

@@ -149,7 +149,7 @@
     <style name="textview_trend_project_details">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">18sp</item>
         <item name="android:layout_margin">5dp</item>
         <item name="android:layout_weight">1</item>
         <item name="android:textStyle">normal</item>

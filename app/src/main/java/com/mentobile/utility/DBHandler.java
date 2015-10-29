@@ -15,24 +15,15 @@ public class DBHandler extends SQLiteOpenHelper {
 
     String TAG = "DBHandler";
 
-    public static final String DATABASE_NAME = "RestauraneDemo.db";
+    public static final String DATABASE_NAME = "Homzz.db";
     public static final String TABLE_USER_PROFILE = "tbl_user_profile";
     public static final String TABLE_DELIVERY_ADDRESS = "tbl_del_address";
     public static final String CRT_UPLOAD = "CREATE TABLE IF NOT EXISTS "
             + TABLE_USER_PROFILE
-            + "(FNAME VARCHAR , " +
-            "   LNAME VARCHAR," +
-            "   FULLNAME VARCHAR, " +
+            + "(NAME VARCHAR, " +
             "   EMAIL VARCHAR PRIMARY KEY NOT NULL UNIQUE, " +
-            "   MOBILE VARCHAR, " +
-            "   CITY VARCHAR, " +
-            "   LOCATION VARCHAR , " +
-            "   COMPANY VARCHAR, " +
-            "   FLATNO VARCHAR, " +
-            "   APARTMENT VARCHAR, " +
-            "   POSTCODE VARCHAR, " +
-            "   OTHERADDRESS VARCHAR, " +
-            "   DELINS VARCHAR )";
+            "   PHONE VARCHAR, " +
+            "   CITY VARCHAR )";
 
     public static final String CRT_DELVRY_ADDRESS = "CREATE TABLE IF NOT EXISTS "
             + TABLE_DELIVERY_ADDRESS
@@ -80,7 +71,7 @@ public class DBHandler extends SQLiteOpenHelper {
         db.insert(tableName, null, values);
     }
 
-    public Cursor getPRofileDataFromDB(String emailID) {
+    public Cursor getProfileFromDB(String emailID) {
         SQLiteDatabase db = getReadableDatabase();
         String selectData = "SELECT * FROM " + TABLE_USER_PROFILE + " WHERE email=" + "'" + emailID + "'";
         Cursor cursor = db.rawQuery(selectData, null);

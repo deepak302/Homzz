@@ -18,6 +18,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import android.util.Log;
 
 import com.mentobile.homzz.Application;
@@ -40,12 +41,12 @@ public class WebService {
         // Making HTTP request
         try {
 
-//            Log.d(TAG,":::::URl "+Application.URL + methodname + ".php");
+            Log.d(TAG, ":::::URl " + Application.URL + methodname + ".php");
             DefaultHttpClient httpClient = new DefaultHttpClient();
             HttpPost httpPost = new HttpPost(Application.URL + methodname + ".php");
             //Depends on your web service
-//            httpPost.setHeader("Content-type", "application/json");
-           // Log.d(TAG,"::::::Params "+params);
+            // httpPost.setHeader("Content-Type", "application/json");
+            // Log.d(TAG,"::::::Params "+params);
             httpPost.setEntity(new UrlEncodedFormEntity(params));
 //            Log.d(TAG,":::::URl "+httpPost.getEntity());
             HttpResponse httpResponse = httpClient.execute(httpPost);

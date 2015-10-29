@@ -92,6 +92,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
         btnCreateAccount.setOnClickListener(this);
     }
 
+    JSONObject json = null;
 
     @Override
     public void onClick(View v) {
@@ -99,13 +100,13 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
             case R.id.signup_btn_createaccount:
 
                 final String name = edName.getText().toString().trim();
-                final String mobile = edMobile.getText().toString().trim();
+                final String phone = edMobile.getText().toString().trim();
                 final String password = edPassword.getText().toString().trim();
                 final String cPassword = edCPassword.getText().toString().trim();
                 final String city = edCity.getText().toString().trim();
                 if (name.length() < 1) {
                     edName.setError(getString(R.string.error_name));
-                } else if (mobile.length() < 1) {
+                } else if (phone.length() < 1) {
                     edMobile.setError(getString(R.string.error_mobile));
                 } else if (password.length() < 6) {
                     edPassword.setError(getString(R.string.error_password));
@@ -131,14 +132,13 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
                             listValue = new ArrayList<NameValuePair>();
                             listValue.add(new BasicNameValuePair("name", name));
                             listValue.add(new BasicNameValuePair("email", strEmail));
-                            listValue.add(new BasicNameValuePair("mobile", mobile));
+                            listValue.add(new BasicNameValuePair("phone", phone));
                             listValue.add(new BasicNameValuePair("pass", password));
-                            listValue.add(new BasicNameValuePair("cpass", cPassword));
                             listValue.add(new BasicNameValuePair("city", city));
                             listValue.add(new BasicNameValuePair("type", "2"));
-                            JSONObject json = webService.makeHttpRequest("signup", listValue);
+                            json = webService.makeHttpRequest("signup", listValue);
                             try {
-                                String success = json.getString("description");
+                                String success = json.getString("responsecode");
                                 return success;
 
                             } catch (JSONException e) {
@@ -151,16 +151,21 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
                         protected void onPostExecute(String result) {
                             super.onPostExecute(result);
                             Log.d(TAG, "::::Result " + result);
-                            Toast.makeText(SignupActivity.this, "" + result, Toast.LENGTH_SHORT).show();
+                            try {
+                                Toast.makeText(SignupActivity.this, "" + json.getString("description"), Toast.LENGTH_SHORT).show();
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                                e.printStackTrace();
+                            }
                             cProgressDialog.hide();
-                            if (result.equalsIgnoreCase("success")) {
+                            if (result.equalsIgnoreCase("100")) {
                                 Log.d(TAG, "::::Email " + strEmail);
                                 Application.setDataInSharedPreference(SignupActivity.this, Application.SP_LOGIN_LOGOUT, "email", strEmail);
                                 ContentValues values = new ContentValues();
-                                values.put("FULLNAME", name);
+                                values.put("NAME", name);
                                 values.put("EMAIL", strEmail);
-                                values.put("MOBILE", mobile);
-                                values.put("CITY", "");
+                                values.put("PHONE", phone);
+                                values.put("CITY", city);
                                 dbHandler.insertData(DBHandler.TABLE_USER_PROFILE, values);
                                 Intent intent = new Intent(SignupActivity.this, MainActivity.class);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

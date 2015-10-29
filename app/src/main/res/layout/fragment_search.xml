@@ -9,7 +9,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_above="@+id/search_btn_search"
         android:visibility="visible">
 
@@ -17,17 +17,6 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
-            <!-- <EditText
-                 android:id="@+id/search_ed_search"
-                 android:layout_width="match_parent"
-                 android:layout_height="wrap_content"
-                 android:layout_margin="10dp"
-                 android:background="@drawable/edittext_design"
-                 android:drawableLeft="@android:drawable/ic_menu_search"
-                 android:hint="@string/search_city"
-                 android:singleLine="true"
-                 android:textColorHint="@color/counter_text_bg" />-->
 
             <EditText
                 android:id="@+id/search_ed_anyType"
@@ -118,64 +107,9 @@
                 style="@style/textview_header"
                 android:text="Bedrooms" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/search_tv_bd_any"
-                    style="@style/textview_simple_text"
-                    android:text="Any" />
-
-                <TextView
-                    android:id="@+id/search_tv_bd1"
-                    style="@style/textview_simple_text"
-                    android:text="1" />
-
-                <TextView
-                    android:id="@+id/search_tv_bd2"
-                    style="@style/textview_simple_text"
-                    android:text="2" />
-
-                <TextView
-                    android:id="@+id/search_tv_bd3"
-                    style="@style/textview_simple_text"
-                    android:text="3" />
-
-                <TextView
-                    android:id="@+id/search_tv_bd4"
-                    style="@style/textview_simple_text"
-                    android:text="4" />
-
-                <TextView
-                    android:id="@+id/search_tv_bd4plus"
-                    style="@style/textview_simple_text"
-                    android:text="4+" />
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/search_tv_price_range"
-                style="@style/textview_header"
-                android:text="Price Range" />
-
-            <LinearLayout
-                android:id="@+id/seekbar_testing"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="-10dp"
-                android:orientation="horizontal" />
-
-            <TextView
-                android:id="@+id/search_tv_sqft"
-                style="@style/textview_header"
-                android:text="Sq Ft" />
-
             <HorizontalScrollView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal">
+                android:layout_height="wrap_content">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -183,63 +117,59 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/search_tv_sqftAny"
+                        android:id="@+id/search_tv_bd_any"
                         style="@style/textview_simple_text"
                         android:text="Any" />
 
                     <TextView
-                        android:id="@+id/search_tv_sqft500"
+                        android:id="@+id/search_tv_bd1"
                         style="@style/textview_simple_text"
-                        android:text="500+" />
+                        android:text="1" />
 
                     <TextView
-                        android:id="@+id/search_tv_sqft1K"
+                        android:id="@+id/search_tv_bd2"
                         style="@style/textview_simple_text"
-                        android:text="1K+" />
+                        android:text="2" />
 
                     <TextView
-                        android:id="@+id/search_tv_sqft2K"
+                        android:id="@+id/search_tv_bd3"
                         style="@style/textview_simple_text"
-                        android:text="2K+" />
+                        android:text="3" />
 
                     <TextView
-                        android:id="@+id/search_tv_sqft3K"
+                        android:id="@+id/search_tv_bd4"
                         style="@style/textview_simple_text"
-                        android:text="3K+" />
+                        android:text="4" />
 
                     <TextView
-                        android:id="@+id/search_tv_sqft4K"
+                        android:id="@+id/search_tv_bd4plus"
                         style="@style/textview_simple_text"
-                        android:text="4K+" />
+                        android:text="4+" />
                 </LinearLayout>
             </HorizontalScrollView>
 
             <TextView
-                android:id="@+id/search_tv_listed_by"
+                android:id="@+id/search_tv_price_range"
                 style="@style/textview_header"
-                android:text="Listed By" />
+                android:text="Price Range (In Lacs)" />
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:id="@+id/seekbar_price"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal" />
 
-                <TextView
-                    android:id="@+id/search_tv_list_owner"
-                    style="@style/textview_simple_text"
-                    android:text="Owner" />
+            <TextView
+                android:id="@+id/search_tv_sqft"
+                style="@style/textview_header"
+                android:text="Area (Sq.Ft.)" />
 
-                <TextView
-                    android:id="@+id/search_tv_list_agent"
-                    style="@style/textview_simple_text"
-                    android:text="Agent" />
-
-                <TextView
-                    android:id="@+id/search_tv_list_builder"
-                    style="@style/textview_simple_text"
-                    android:text="Builder" />
-
-            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/seekbar_area"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal" />
         </LinearLayout>
     </ScrollView>
 

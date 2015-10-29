@@ -1,19 +1,12 @@
 package com.mentobile.homzz;
 
 import android.app.AlertDialog;
-import android.app.FragmentManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.MenuItemCompat;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -23,20 +16,16 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.mentobile.utility.DBHandler;
 import com.mentobile.utility.UpdateNotification;
-
 import java.util.ArrayList;
 
 public class MainActivity extends ActionBarActivity implements AdapterView.OnItemClickListener, ActionBar.OnNavigationListener {
@@ -51,17 +40,14 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
     private SMenuAdapter nvAdapter;
     Toolbar toolbar;
     ArrayList<NvItems> arrNVItems = new ArrayList<NvItems>();
-
     private TextView tvNVEmail;
     private TextView tvNVName;
-
     private DBHandler dbHandler;
-
 
     @Override
     protected void onStart() {
         super.onStart();
-        // setProfile();
+        setProfile();
     }
 
     @Override
@@ -171,29 +157,21 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
             NvItems items = (arrNVItems).get(5);
             items.setTitle(getString(R.string.prompt_logout));
             nvAdapter.notifyDataSetChanged();
-            Cursor cursor = dbHandler.getPRofileDataFromDB(email);
+            Log.d(TAG, ":::::Emailg " + email);
+            Cursor cursor = dbHandler.getProfileFromDB(email);
+            Log.d(TAG, ":::::Cursor " + cursor.getCount());
             while (cursor.moveToNext()) {
-                Profile.getProfile().setFirstName(cursor.getString(0));
-                Profile.getProfile().setLastName(cursor.getString(1));
-                Profile.getProfile().setFullName(cursor.getString(2));
-                Profile.getProfile().setFullName(cursor.getString(2));
-                Profile.getProfile().setEmailID(cursor.getString(3));
-                Profile.getProfile().setMobile(cursor.getString(4));
-                Profile.getProfile().setCityName(cursor.getString(5));
-                Profile.getProfile().setLocation(cursor.getString(6));
-                Profile.getProfile().setCompanyName(cursor.getString(7));
-                Profile.getProfile().setHouseNo(cursor.getString(8));
-                Profile.getProfile().setApartmentName(cursor.getString(9));
-                Profile.getProfile().setPostalCode(cursor.getString(10));
-                Profile.getProfile().setOtherAddress(cursor.getString(11));
-                Profile.getProfile().setDelIns(cursor.getString(12));
+                Profile.getProfile().setName(cursor.getString(0));
+                Profile.getProfile().setEmailID(cursor.getString(1));
+                Profile.getProfile().setPhone(cursor.getString(2));
+                Profile.getProfile().setCityName(cursor.getString(3));
             }
         } else {
             Profile.getProfile().setEmailID(getString(R.string.prompt_nv_email));
-            Profile.getProfile().setFullName(getString(R.string.prompt_nv_name));
+            Profile.getProfile().setName(getString(R.string.prompt_nv_name));
         }
         tvNVEmail.setText(Profile.getProfile().getEmailID());
-        tvNVName.setText(Profile.getProfile().getFullName());
+        tvNVName.setText(Profile.getProfile().getName());
     }
 
     @Override

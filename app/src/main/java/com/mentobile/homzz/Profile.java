@@ -7,20 +7,11 @@ import android.support.v4.app.NavUtils;
  */
 public class Profile {
 
-    private String FirstName;
-    private String LastName;
-    private String FullName;
+    private String Name;
     private String EmailID;
-    private String Mobile;
+    private String Phone;
     private String CityName;
-    private String Location;
-    private String CompanyName;
-    private String HouseNo;
-    private String ApartmentName;
-    private String PostalCode;
     private String Photo;
-    private String OtherAddress;
-    private String DelIns;
 
     private static Profile profile = null;
 
@@ -34,22 +25,12 @@ public class Profile {
     public Profile() {
     }
 
-    public void setProfile(String firstName, String lastName, String emailID, String mobile,
-                           String cityName, String location, String companyName, String houseNo,
-                           String apartmentName, String postalCode, String photo, String otherAddress, String delIns) {
-        FirstName = firstName;
-        LastName = lastName;
+    public Profile(String name, String emailID, String phone, String cityName, String photo) {
+        Name = name;
         EmailID = emailID;
-        Mobile = mobile;
+        Phone = phone;
         CityName = cityName;
-        Location = location;
-        CompanyName = companyName;
-        HouseNo = houseNo;
-        ApartmentName = apartmentName;
-        PostalCode = postalCode;
         Photo = photo;
-        OtherAddress = otherAddress;
-        DelIns = delIns;
     }
 
     public static void emptyProfile() {
@@ -58,28 +39,12 @@ public class Profile {
         }
     }
 
-    public String getFirstName() {
-        return FirstName;
+    public String getName() {
+        return Name;
     }
 
-    public void setFirstName(String firstName) {
-        FirstName = firstName;
-    }
-
-    public String getLastName() {
-        return LastName;
-    }
-
-    public void setLastName(String lastName) {
-        LastName = lastName;
-    }
-
-    public void setFullName(String fullName) {
-        FullName = fullName;
-    }
-
-    public String getFullName() {
-        return FullName;
+    public void setName(String name) {
+        Name = name;
     }
 
     public String getEmailID() {
@@ -90,12 +55,12 @@ public class Profile {
         EmailID = emailID;
     }
 
-    public String getMobile() {
-        return Mobile;
+    public String getPhone() {
+        return Phone;
     }
 
-    public void setMobile(String mobile) {
-        Mobile = mobile;
+    public void setPhone(String phone) {
+        Phone = phone;
     }
 
     public String getCityName() {
@@ -106,46 +71,6 @@ public class Profile {
         CityName = cityName;
     }
 
-    public String getLocation() {
-        return Location;
-    }
-
-    public void setLocation(String location) {
-        Location = location;
-    }
-
-    public String getCompanyName() {
-        return CompanyName;
-    }
-
-    public void setCompanyName(String companyName) {
-        CompanyName = companyName;
-    }
-
-    public String getHouseNo() {
-        return HouseNo;
-    }
-
-    public void setHouseNo(String houseNo) {
-        HouseNo = houseNo;
-    }
-
-    public String getApartmentName() {
-        return ApartmentName;
-    }
-
-    public void setApartmentName(String apartmentName) {
-        ApartmentName = apartmentName;
-    }
-
-    public String getPostalCode() {
-        return PostalCode;
-    }
-
-    public void setPostalCode(String postalCode) {
-        PostalCode = postalCode;
-    }
-
     public String getPhoto() {
         return Photo;
     }
@@ -154,19 +79,4 @@ public class Profile {
         Photo = photo;
     }
 
-    public String getOtherAddress() {
-        return OtherAddress;
-    }
-
-    public void setOtherAddress(String otherAddress) {
-        OtherAddress = otherAddress;
-    }
-
-    public String getDelIns() {
-        return DelIns;
-    }
-
-    public void setDelIns(String delIns) {
-        DelIns = delIns;
-    }
 }

@@ -64,23 +64,39 @@ public class SearchFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_search, container, false);
-        RangeSeekBar<Integer> rangeSeekBar = new RangeSeekBar<Integer>(getActivity());
-        rangeSeekBar.setRangeValues(15, 90);
-        rangeSeekBar.setSelectedMinValue(20);
-        rangeSeekBar.setSelectedMaxValue(88);
-        rangeSeekBar.setOnRangeSeekBarChangeListener(new RangeSeekBar.OnRangeSeekBarChangeListener<Integer>() {
+
+        // Add seekBar for Price Range
+        RangeSeekBar<Integer> seekBarPrice = new RangeSeekBar<Integer>(getActivity());
+        seekBarPrice.setRangeValues(5, 100);
+        seekBarPrice.setSelectedMinValue(20);
+        seekBarPrice.setSelectedMaxValue(60);
+        seekBarPrice.setOnRangeSeekBarChangeListener(new RangeSeekBar.OnRangeSeekBarChangeListener<Integer>() {
             @Override
             public void onRangeSeekBarValuesChanged(RangeSeekBar<?> bar, Integer minValue, Integer maxValue) {
                 Toast.makeText(getActivity(), "Min Value " + minValue + " Max " + maxValue, Toast.LENGTH_SHORT).show();
             }
         });
 
-        btnSearch = (Button) view.findViewById(R.id.search_btn_search);
-        btnSearch.setOnClickListener(this);
+        // Add to layout
+        LinearLayout layout = (LinearLayout) view.findViewById(R.id.seekbar_price);
+        layout.addView(seekBarPrice);
+
+
+        // Add seekBar for Area ( Sq Ft)
+        RangeSeekBar<Integer> seekBarArea = new RangeSeekBar<Integer>(getActivity());
+        seekBarArea.setRangeValues(10, 10000);
+        seekBarArea.setSelectedMinValue(500);
+        seekBarArea.setSelectedMaxValue(6000);
+        seekBarArea.setOnRangeSeekBarChangeListener(new RangeSeekBar.OnRangeSeekBarChangeListener<Integer>() {
+            @Override
+            public void onRangeSeekBarValuesChanged(RangeSeekBar<?> bar, Integer minValue, Integer maxValue) {
+                Toast.makeText(getActivity(), "Min Value " + minValue + " Max " + maxValue, Toast.LENGTH_SHORT).show();
+            }
+        });
 
         // Add to layout
-        LinearLayout layout = (LinearLayout) view.findViewById(R.id.seekbar_testing);
-        layout.addView(rangeSeekBar);
+        LinearLayout layout_Area = (LinearLayout) view.findViewById(R.id.seekbar_area);
+        layout_Area.addView(seekBarArea);
 
         tvBDAny = (TextView) view.findViewById(R.id.search_tv_bd_any);
         tvBDAny.setOnClickListener(this);
@@ -100,36 +116,6 @@ public class SearchFragment extends Fragment implements View.OnClickListener {
         tvBD4Plus = (TextView) view.findViewById(R.id.search_tv_bd4plus);
         tvBD4Plus.setOnClickListener(this);
 
-        // Sqft
-
-        tvSQFTAny = (TextView) view.findViewById(R.id.search_tv_sqftAny);
-        tvSQFTAny.setOnClickListener(this);
-
-        tvSQFT500 = (TextView) view.findViewById(R.id.search_tv_sqft500);
-        tvSQFT500.setOnClickListener(this);
-
-        tvSQFT1K = (TextView) view.findViewById(R.id.search_tv_sqft1K);
-        tvSQFT1K.setOnClickListener(this);
-
-        tvSQFT2K = (TextView) view.findViewById(R.id.search_tv_sqft2K);
-        tvSQFT2K.setOnClickListener(this);
-
-        tvSQFT3K = (TextView) view.findViewById(R.id.search_tv_sqft3K);
-        tvSQFT3K.setOnClickListener(this);
-
-        tvSQFT4K = (TextView) view.findViewById(R.id.search_tv_sqft4K);
-        tvSQFT4K.setOnClickListener(this);
-
-        // Listed By
-
-        tvListOwner = (TextView) view.findViewById(R.id.search_tv_list_owner);
-        tvListOwner.setOnClickListener(this);
-
-        tvListAgent = (TextView) view.findViewById(R.id.search_tv_list_agent);
-        tvListAgent.setOnClickListener(this);
-
-        tvListBuilder = (TextView) view.findViewById(R.id.search_tv_list_builder);
-        tvListBuilder.setOnClickListener(this);
 
         edSearchAny = (EditText) view.findViewById(R.id.search_ed_anyType);
         edSearchAny.setOnClickListener(this);
@@ -137,8 +123,10 @@ public class SearchFragment extends Fragment implements View.OnClickListener {
         edSearchLocality = (EditText) view.findViewById(R.id.search_ed_locality);
         edSearchLocality.setOnClickListener(this);
 
-//        adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_dropdown_item_1line, item);
-//        textView.setAdapter(adapter);
+        btnSearch = (Button) view.findViewById(R.id.search_btn_search);
+        btnSearch.setOnClickListener(this);
+
+
         return view;
     }
 
@@ -163,41 +151,6 @@ public class SearchFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.search_tv_bd4plus:
                 setTVButton(tvBD4Plus, id);
-                break;
-
-            // Sqft
-
-            case R.id.search_tv_sqftAny:
-                setTVButton(tvSQFTAny, id);
-                break;
-            case R.id.search_tv_sqft500:
-                setTVButton(tvSQFT500, id);
-                break;
-            case R.id.search_tv_sqft1K:
-                setTVButton(tvSQFT1K, id);
-                break;
-            case R.id.search_tv_sqft2K:
-                setTVButton(tvSQFT2K, id);
-                break;
-            case R.id.search_tv_sqft3K:
-                setTVButton(tvSQFT3K, id);
-                break;
-            case R.id.search_tv_sqft4K:
-                setTVButton(tvSQFT4K, id);
-                break;
-
-            // Listed by
-
-            case R.id.search_tv_list_owner:
-                setTVButton(tvListOwner, id);
-                break;
-
-            case R.id.search_tv_list_agent:
-                setTVButton(tvListAgent, id);
-                break;
-
-            case R.id.search_tv_list_builder:
-                setTVButton(tvListBuilder, id);
                 break;
 
             // EditText

@@ -35,8 +35,8 @@ public class ProjectListActivity extends ActionBarActivity implements AdapterVie
         listView = (ListView) findViewById(R.id.project_list_view);
 
         for (int i = 0; i < 50; i++) {
-            TrendItem trendItem = new TrendItem(null, "Builder Name " + i, "Location " + i, "50" + i + "sq ft", "30" + i + " Lacs");
-            arrProjectList.add(trendItem);
+            TrendItem TrendItem = new TrendItem(null, "Builder Name " + i, "Location " + i, "50" + i + "sq ft", "30" + i + " Lacs");
+            arrProjectList.add(TrendItem);
         }
         trendListAdapter = new TrendListAdapter(this, R.layout.layout_search_result, arrProjectList);
         listView.setAdapter(trendListAdapter);

@@ -195,6 +195,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         actionBar.setDisplayHomeAsUpEnabled(false);
     }
 
+    JSONObject json = null;
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -226,10 +228,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         @Override
                         protected String doInBackground(String... params) {
                             Log.d(TAG, "::::::Json 1");
-                            JSONObject json = webService.makeHttpRequest("signup", listValue);
+                            json = webService.makeHttpRequest("signup", listValue);
                             Log.d(TAG, "::::::Json ");
                             try {
-                                String success = json.getString("description");
+                                String success = json.getString("responsecode");
                                 return success;
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -241,8 +243,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         protected void onPostExecute(String result) {
                             super.onPostExecute(result);
                             cProgressDialog.hide();
-                            Log.d(TAG, "::::::Result " + result);
-                            if (result.equals("success")) {
+                            if (result.equals("100")) {
 
                                 LOGIN_TYPE = 1;
                                 Profile.getProfile().setEmailID(edUserName.getText().toString().trim());
@@ -254,7 +255,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                 finish();
                                 startActivity(intent);
                             } else {
-                                Toast.makeText(getApplicationContext(), "" + result, Toast.LENGTH_SHORT).show();
+                                try {
+                                    Toast.makeText(getApplicationContext(), "" + json.getString("description"), Toast.LENGTH_SHORT).show();
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
                             }
                         }
                     }.execute();
@@ -389,7 +394,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 LOGIN_TYPE = 2;
                 Person currentPerson = Plus.PeopleApi.getCurrentPerson(mGoogleApiClient);
                 String email = Plus.AccountApi.getAccountName(mGoogleApiClient);
-                Profile.getProfile().setFullName(currentPerson.getDisplayName());
+                Profile.getProfile().setName(currentPerson.getDisplayName());
                 Profile.getProfile().setEmailID(email);
 //                Log.d(TAG, "::::Display Name " + currentPerson.getDisplayName() + " Email " + email);
                 Application.setDataInSharedPreference(LoginActivity.this, Application.SP_LOGIN_LOGOUT, "email", email);
@@ -547,7 +552,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                 try {
                                     String email = (String) jsonObject.get("email");
                                     String name = (String) jsonObject.get("name");
-                                    Profile.getProfile().setFullName(name);
+                                    Profile.getProfile().setName(name);
                                     Profile.getProfile().setEmailID(email);
                                     Application.setDataInSharedPreference(LoginActivity.this, Application.SP_LOGIN_LOGOUT, "email", email);
                                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);

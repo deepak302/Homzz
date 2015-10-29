@@ -28,6 +28,11 @@ public class Application {
     public final static String URL = "http://www.mentobile.com/homzz/";
     public final static String SP_LOGIN_LOGOUT = "login_logout";
 
+    // WS -> WEB SERVICE
+
+    public final static String WS_SIGNUP = "signup";
+    public final static String WS_TRENDING = "trending";
+
     private static URL url = null;
 
 
@@ -84,6 +89,7 @@ public class Application {
             available = true;
 
         /** Returning the status of the network */
+        Log.d("Application ",":::::Network "+available);
         return available;
     }
 
