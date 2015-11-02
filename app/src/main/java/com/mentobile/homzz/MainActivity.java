@@ -26,6 +26,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.mentobile.utility.DBHandler;
 import com.mentobile.utility.UpdateNotification;
+
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class MainActivity extends ActionBarActivity implements AdapterView.OnItemClickListener, ActionBar.OnNavigationListener {
@@ -48,6 +50,12 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
     protected void onStart() {
         super.onStart();
         setProfile();
+
+        double value = 123456.00;
+        String pattern = "##,####";
+        DecimalFormat decimalFormat = new DecimalFormat(pattern);
+        String output = decimalFormat.format(value);
+        Log.d(TAG,":::::Output "+output);
     }
 
     @Override

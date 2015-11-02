@@ -1,44 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="220dp"
-    android:weightSum="4">
+    android:layout_height="wrap_content"
+    android:descendantFocusability="blocksDescendants"
+    android:orientation="vertical">
 
     <ImageView
         android:id="@+id/trend_imgv_banner"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:layout_weight="2.5"
         android:layout_gravity="center_vertical"
         android:background="@mipmap/bg" />
 
-    <LinearLayout
-        android:layout_width="0dp"
+    <ImageButton
+        android:id="@+id/trend_imgbtn_like"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1.5"
-        android:orientation="vertical">
+        android:layout_alignParentRight="true"
+        android:layout_margin="10dp"
+        android:background="@mipmap/heart" />
 
-        <TextView
-            android:id="@+id/trend_tv_builder_name"
-            style="@style/textview_trend_text"
-            android:text="Builder Name"
-            android:textStyle="bold" />
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/trend_imgv_banner"
+        android:background="@color/white">
 
-        <TextView
-            android:id="@+id/trend_tv_location"
-            style="@style/textview_trend_text"
-            android:text="Location" />
+        <TableRow
+            android:layout_margin="2dp"
+            android:weightSum="2">
 
-        <TextView
-            android:id="@+id/trend_tv_sqft"
-            style="@style/textview_trend_text"
-            android:text="500 sq ft" />
+            <TextView
+                android:id="@+id/trend_tv_builder_name"
+                style="@style/textview_trend_text"
+                android:layout_weight="1"
+                android:text="Builder Name" />
 
-        <TextView
-            android:id="@+id/trend_tv_price"
-            style="@style/textview_trend_text"
-            android:text="30 Lacs" />
+            <TextView
+                android:id="@+id/trend_tv_price_sqft"
+                style="@style/textview_trend_text"
+                android:layout_weight="1"
+                android:gravity="end"
+                android:text="5000 " />
 
-    </LinearLayout>
+        </TableRow>
 
-</LinearLayout>
+        <TableRow
+            android:layout_margin="2dp"
+            android:weightSum="2">
+
+            <TextView
+                android:id="@+id/trend_tv_location"
+                style="@style/textview_trend_text"
+                android:layout_weight="1"
+                android:text="Location" />
+
+            <TextView
+                android:id="@+id/trend_tv_area"
+                style="@style/textview_trend_text"
+                android:layout_weight="1"
+                android:gravity="end"
+                android:text="2,3,4 BHK" />
+
+        </TableRow>
+
+    </TableLayout>
+
+</RelativeLayout>

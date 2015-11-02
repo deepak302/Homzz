@@ -39,6 +39,7 @@
                 <TextView
                     android:id="@+id/trend_tv_sqft"
                     style="@style/textview_trend_project_details"
+                    android:gravity="right"
                     android:text="3 BHK" />
             </TableRow>
 
@@ -53,6 +54,7 @@
                 <TextView
                     android:id="@+id/trend_tv_price"
                     style="@style/textview_trend_project_details"
+                    android:gravity="right"
                     android:text="30 Lacs" />
             </TableRow>
         </TableLayout>

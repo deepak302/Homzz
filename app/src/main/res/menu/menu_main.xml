@@ -2,11 +2,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".MainActivity">
-    <!--<item
-        android:id="@+id/action_cart"
-        android:actionLayout="@layout/layout_heart"
-        android:icon="@drawable/heart_design"
-        app:showAsAction="ifRoom" />-->
 
     <item
         android:id="@+id/action_notifications"

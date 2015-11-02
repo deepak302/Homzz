@@ -1,6 +1,5 @@
 package com.mentobile.homzz;
 
-import android.nfc.Tag;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -13,7 +12,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.MultiAutoCompleteTextView;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -24,10 +22,14 @@ public class SearchLocalityActivity extends ActionBarActivity implements Adapter
 
     private static final String TAG = "SearchLocalityActivity";
     private ArrayList<String> arrSearchLocality = new ArrayList<>();
+    private ArrayList<String> arrSelectedLocality = new ArrayList<>();
 
     private EditText edLocation;
-    private ListView listView;
-    private ArrayAdapter<String> adapter;
+    private ListView listViewLocality;
+    private ListView listViewSelLocality;
+
+    private ArrayAdapter<String> adapterLocality;
+    private SelLocalityAdapter adapterSelLocality;
 
     String products[] = {"Dell Inspiron", "HTC One X", "HTC Wildfire S", "HTC Sense", "HTC Sensation XE",
             "iPhone 4S", "Samsung Galaxy Note 800",
@@ -44,7 +46,6 @@ public class SearchLocalityActivity extends ActionBarActivity implements Adapter
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_locality);
 
-
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -56,10 +57,20 @@ public class SearchLocalityActivity extends ActionBarActivity implements Adapter
 
         edLocation = (EditText) findViewById(R.id.search_ed_locality);
 
-        listView = (ListView) findViewById(R.id.search_lv_data);
-        listView.setOnItemClickListener(this);
-        adapter = new ArrayAdapter<String>(this, R.layout.list_item, R.id.product_name, arrSearchLocality);
-        listView.setAdapter(adapter);
+        listViewLocality = (ListView) findViewById(R.id.search_lv_data);
+        listViewLocality.setOnItemClickListener(this);
+        adapterLocality = new ArrayAdapter<String>(this, R.layout.list_item, R.id.product_name, arrSearchLocality);
+        listViewLocality.setAdapter(adapterLocality);
+
+        listViewSelLocality = (ListView) findViewById(R.id.search_lv_select_locality);
+        adapterSelLocality = new SelLocalityAdapter(getApplicationContext(), R.layout.layout_selected_locality, arrSelectedLocality);
+        listViewSelLocality.setAdapter(adapterSelLocality);
+        listViewSelLocality.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+        });
 
 
         edLocation.addTextChangedListener(new TextWatcher() {
@@ -77,7 +88,7 @@ public class SearchLocalityActivity extends ActionBarActivity implements Adapter
             @Override
             public void afterTextChanged(Editable s) {
                 Log.d(TAG, "::::afterTextChanged " + s);
-                // SearchLocalityActivity.this.adapter.getFilter().filter(s);
+                // SearchLocalityActivity.this.adapterLocality.getFilter().filter(s);
 
                 String str = s.toString().toLowerCase(Locale.getDefault());
                 arrSearchLocality.clear();
@@ -95,7 +106,7 @@ public class SearchLocalityActivity extends ActionBarActivity implements Adapter
                     }
                 }
                 edLocation.setSelection(str.length());
-                adapter.notifyDataSetChanged();
+                adapterLocality.notifyDataSetChanged();
             }
         });
     }
@@ -121,8 +132,10 @@ public class SearchLocalityActivity extends ActionBarActivity implements Adapter
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-        Log.d(TAG, ":::::Position " + position);
         String location = arrSearchLocality.get(position);
-        edLocation.setText(location);
+        arrSelectedLocality.add(location);
+        adapterSelLocality.notifyDataSetChanged();
+        Log.d(TAG, ":::::Position " + arrSelectedLocality.size());
+//        edLocation.setText(location);
     }
 }
