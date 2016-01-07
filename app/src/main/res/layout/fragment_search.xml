@@ -28,7 +28,8 @@
                 android:focusable="false"
                 android:hint="@string/search_city"
                 android:singleLine="true"
-                android:textColorHint="@color/counter_text_bg" />
+                android:textColorHint="@color/counter_text_bg"
+                android:textSize="13sp" />
 
             <EditText
                 android:id="@+id/search_ed_locality"
@@ -36,11 +37,12 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:background="@drawable/edittext_design"
-                android:drawableRight="@drawable/spinner_ab_pressed_style"
+                android:drawableRight="@drawable/spinner_background_ab_style"
                 android:focusable="false"
                 android:hint="@string/spinner_select_locality"
                 android:singleLine="true"
-                android:textColorHint="@color/counter_text_bg" />
+                android:textColorHint="@color/counter_text_bg"
+                android:textSize="13sp" />
 
             <TextView
                 android:id="@+id/search_tv_propertytype"
@@ -58,46 +60,38 @@
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:id="@+id/search_imgv_apartment"
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        android:background="@mipmap/ic_launcher" />
+                        android:id="@+id/search_img_apartment"
+                        android:layout_width="90dp"
+                        android:layout_height="80dp"
+                        android:background="@drawable/apartment" />
 
                     <ImageView
-                        android:id="@+id/search_imgv_plot"
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        android:background="@mipmap/ic_launcher" />
+                        android:id="@+id/search_img_builder_floor"
+                        android:layout_width="90dp"
+                        android:layout_height="80dp"
+                        android:layout_marginLeft="1dp"
+                        android:background="@drawable/floor" />
 
                     <ImageView
-                        android:id="@+id/search_imgv_house"
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        android:background="@mipmap/ic_launcher" />
+                        android:id="@+id/search_img_farm_house"
+                        android:layout_width="90dp"
+                        android:layout_height="80dp"
+                        android:layout_marginLeft="1dp"
+                        android:background="@drawable/farm_house" />
 
                     <ImageView
-                        android:id="@+id/search_imgv_land"
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        android:background="@mipmap/ic_launcher" />
+                        android:id="@+id/search_img_house"
+                        android:layout_width="90dp"
+                        android:layout_height="80dp"
+                        android:layout_marginLeft="1dp"
+                        android:background="@drawable/house" />
 
                     <ImageView
-                        android:id="@+id/search_imgv_plot1"
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        android:background="@mipmap/ic_launcher" />
-
-                    <ImageView
-                        android:id="@+id/search_imgv_house1"
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        android:background="@mipmap/ic_launcher" />
-
-                    <ImageView
-                        android:id="@+id/search_imgv_land1"
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        android:background="@mipmap/ic_launcher" />
+                        android:id="@+id/search_img_plot"
+                        android:layout_width="90dp"
+                        android:layout_height="80dp"
+                        android:layout_marginLeft="1dp"
+                        android:background="@drawable/land" />
 
                 </LinearLayout>
             </HorizontalScrollView>
@@ -108,50 +102,52 @@
                 android:text="Bedrooms" />
 
             <HorizontalScrollView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
                     android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/search_tv_bd_any"
-                        style="@style/textview_simple_text"
-                        android:text="Any" />
-
-                    <TextView
-                        android:id="@+id/search_tv_bd1"
-                        style="@style/textview_simple_text"
+                    <Button
+                        android:id="@+id/search_btn_bd1"
+                        style="@style/button_property_type"
                         android:text="1" />
 
-                    <TextView
-                        android:id="@+id/search_tv_bd2"
-                        style="@style/textview_simple_text"
+                    <Button
+                        android:id="@+id/search_btn_bd2"
+                        style="@style/button_property_type"
                         android:text="2" />
 
-                    <TextView
-                        android:id="@+id/search_tv_bd3"
-                        style="@style/textview_simple_text"
+                    <Button
+                        android:id="@+id/search_btn_bd3"
+                        style="@style/button_property_type"
                         android:text="3" />
 
-                    <TextView
-                        android:id="@+id/search_tv_bd4"
-                        style="@style/textview_simple_text"
+                    <Button
+                        android:id="@+id/search_btn_bd4"
+                        style="@style/button_property_type"
                         android:text="4" />
 
-                    <TextView
-                        android:id="@+id/search_tv_bd4plus"
-                        style="@style/textview_simple_text"
-                        android:text="4+" />
+                    <Button
+                        android:id="@+id/search_btn_bd5"
+                        style="@style/button_property_type"
+                        android:text="5" />
+
+                    <Button
+                        android:id="@+id/search_btn_5plus"
+                        style="@style/button_property_type"
+                        android:text="5+" />
+
                 </LinearLayout>
             </HorizontalScrollView>
 
             <TextView
                 android:id="@+id/search_tv_price_range"
                 style="@style/textview_header"
-                android:text="Price Range (In Lacs)" />
+                android:text="Price Range" />
 
             <LinearLayout
                 android:id="@+id/seekbar_price"
@@ -162,7 +158,7 @@
             <TextView
                 android:id="@+id/search_tv_sqft"
                 style="@style/textview_header"
-                android:text="Area (Sq.Ft.)" />
+                android:text="Area" />
 
             <LinearLayout
                 android:id="@+id/seekbar_area"
@@ -179,7 +175,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_gravity="center_horizontal"
-        android:layout_margin="5dp"
         android:background="@drawable/button_selector"
         android:text="Search"
         android:textColor="@color/white"

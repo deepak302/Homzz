@@ -79,10 +79,12 @@
 
     //SeacrhView
 
-    <string name="search_city">Location/Developer/Project name</string>
+    <string name="search_city">Location / Developer / Project name</string>
     <string name="search_location">Search Location</string>
-    <string name="demo_min_label">Min</string>
-    <string name="demo_max_label">Max</string>
+    <string name="demo_min_label">Lacs</string>
+    <string name="demo_max_label">Crores</string>
+    <string name="demo_sqft">SqFt</string>
+
     <string name="title_activity_nn_drawer">NnDrawerActivity</string>
     <string name="title_activity_project_detail">ProjectDetailActivity</string>
     <string name="title_activity_project_list">ProjectListActivity</string>
@@ -90,6 +92,9 @@
     <string name="title_activity_search_data">SearchDataActivity</string>
     <string name="title_activity_search">SearchActivity</string>
     <string name="title_activity_favourite">FavouriteActivity</string>
+
+
+
 
 
 </resources>

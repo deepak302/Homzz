@@ -13,6 +13,7 @@
         android:hint="@string/search_city"
         android:singleLine="true"
         android:textColorHint="@color/counter_text_bg"
+        android:textSize="13sp"
         android:textStyle="normal" />
 
 </RelativeLayout>

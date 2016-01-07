@@ -46,9 +46,9 @@ import java.math.BigDecimal;
  * @author Alex Florescu (florescu@yahoo-inc.com)
  * @author Michael Keppler (bananeweizen@gmx.de)
  */
-public class RangeSeekBar<T extends Number> extends ImageView {
+public class RangeSeekBar_SQFT<T extends Number> extends ImageView {
 
-    private static final String TAG = "RangeSeekBar";
+    private static final String TAG = "RangeSeekBar_SQFT";
 
     public static final Integer DEFAULT_MINIMUM = 0;
     public static final Integer DEFAULT_MAXIMUM = 100;
@@ -74,10 +74,8 @@ public class RangeSeekBar<T extends Number> extends ImageView {
     private double normalizedMaxValue = 1d;
     private Thumb pressedThumb = null;
     private boolean notifyWhileDragging = false;
-    private OnRangeSeekBarChangeListener listener;
-    /**
-     * Default color of a {@link RangeSeekBar}, #FF33B5E5. This is also known as "Ice Cream Sandwich" blue.
-     */
+    private OnRangeSeekBar_SQFTChangeListener listener;
+
     public static final int DEFAULT_COLOR = Color.argb(0xFF, 0x33, 0xB5, 0xE5);
     /**
      * An invalid pointer id.
@@ -106,9 +104,8 @@ public class RangeSeekBar<T extends Number> extends ImageView {
     private static final int DEFAULT_TEXT_DISTANCE_TO_TOP_IN_DP = 8;
     private boolean mSingleThumb;
 
-    private String label_Min = "";
-    private String label_Max = "";
-
+    String label_Min = getContext().getString(R.string.demo_sqft);
+    String label_Max = label_Min;
 
     public String getLabel_Min() {
         return " " + label_Min;
@@ -126,17 +123,17 @@ public class RangeSeekBar<T extends Number> extends ImageView {
         this.label_Max = label_Max;
     }
 
-    public RangeSeekBar(Context context) {
+    public RangeSeekBar_SQFT(Context context) {
         super(context);
         init(context, null);
     }
 
-    public RangeSeekBar(Context context, AttributeSet attrs) {
+    public RangeSeekBar_SQFT(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context, attrs);
     }
 
-    public RangeSeekBar(Context context, AttributeSet attrs, int defStyle) {
+    public RangeSeekBar_SQFT(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         init(context, attrs);
     }
@@ -182,7 +179,7 @@ public class RangeSeekBar<T extends Number> extends ImageView {
                 getWidth() - padding,
                 mTextOffset + thumbHalfHeight + lineHeight / 2);
 
-        // make RangeSeekBar focusable. This solves focus handling issues in case EditText widgets are being used along with the RangeSeekBar within ScollViews.
+        // make RangeSeekBar_SQFT focusable. This solves focus handling issues in case EditText widgets are being used along with the RangeSeekBar_SQFT within ScollViews.
         setFocusable(true);
         setFocusableInTouchMode(true);
         mScaledTouchSlop = ViewConfiguration.get(getContext()).getScaledTouchSlop();
@@ -295,7 +292,7 @@ public class RangeSeekBar<T extends Number> extends ImageView {
      *
      * @param listener The listener to notify about changed selected values.
      */
-    public void setOnRangeSeekBarChangeListener(OnRangeSeekBarChangeListener listener) {
+    public void setOnRangeSeekBar_SQFTChangeListener(OnRangeSeekBar_SQFTChangeListener listener) {
         this.listener = listener;
     }
 
@@ -354,7 +351,7 @@ public class RangeSeekBar<T extends Number> extends ImageView {
                     }
 
                     if (notifyWhileDragging && listener != null) {
-                        listener.onRangeSeekBarValuesChanged(this, tempMin, tempMax);
+                        listener.onRangeSeekBar_SQFTValuesChanged(this, convertValue(minLabel), convertValue(maxLabel));
                     }
                 }
                 break;
@@ -374,7 +371,7 @@ public class RangeSeekBar<T extends Number> extends ImageView {
                 pressedThumb = null;
                 invalidate();
                 if (listener != null) {
-                    listener.onRangeSeekBarValuesChanged(this, tempMin, tempMax);
+                    listener.onRangeSeekBar_SQFTValuesChanged(this, convertValue(minLabel), convertValue(maxLabel));
                 }
                 break;
             case MotionEvent.ACTION_POINTER_DOWN: {
@@ -465,79 +462,18 @@ public class RangeSeekBar<T extends Number> extends ImageView {
         setMeasuredDimension(width, height);
     }
 
-    private String temp = "";
-
-    private String getPrice(double dvalue) {
-
-        int value = (int) dvalue;
-        // if (value % 4 == 0) {
-        temp = "";
-        value = value / 2;
-        temp = "." + value + "0";
-        // }
-        return temp;
-    }
-
-    private String getCustomLabel(double value) {
-        String label_Min = (value >= 100) ? " Cr" : " Lacs";
-//        Log.d(TAG, "::::Labek Min " + label_Min + " Value " + value);
-        return label_Min;
-    }
-
-    String tempCursor;
-
-    private String getLabel(double value) {
-
-        String cursorValue = "";
-        if (value < 100) {
-            if (value % 10 == 0) {
-                cursorValue = "" + (int) value;
-                tempCursor = cursorValue;
-                return cursorValue;
-            }
-            return tempCursor;
-        } else if (value >= 100 && value < 120) {
-            cursorValue = 1 + getPrice(value - 100);
-            return cursorValue;
-        } else if (value >= 120 && value < 140) {
-            cursorValue = 2 + getPrice(value - 120);
-            return cursorValue;
-        } else if (value >= 140 && value < 160) {
-            cursorValue = 3 + getPrice(value - 140);
-            return cursorValue;
-        } else if (value >= 160 && value < 180) {
-            cursorValue = 4 + getPrice(value - 160);
-            return cursorValue;
-        } else if (value >= 180 && value < 200) {
-            cursorValue = 5 + getPrice(value - 180);
-            return cursorValue;
-        } else if (value >= 200 && value < 220) {
-            cursorValue = 6 + getPrice(value - 200);
-            return cursorValue;
-        } else if (value >= 220 && value < 240) {
-            cursorValue = 7 + getPrice(value - 220);
-            return cursorValue;
-        } else if (value >= 240 && value < 260) {
-            cursorValue = 8 + getPrice(value - 240);
-            return cursorValue;
-        } else if (value >= 260 && value < 279) {
-            cursorValue = 9 + getPrice(value - 260);
-            return cursorValue;
-        } else if (value >= 279) {
-            return "10";
-        } else {
-            return "" + (int) value;
-        }
+    private String convertValue(String value) {
+        int val = Integer.valueOf(value);
+        val = val * 100;
+        return "" + val;
     }
 
     /**
      * Draws the widget on the given canvas.
      */
-    String minLabel = "0";//getContext().getString(R.string.demo_min_label);
-    String maxLabel = "0";//getContext().getString(R.string.demo_max_label);
+    String minLabel = "";
+    String maxLabel = "";
 
-    String tempMin = "";
-    String tempMax = "";
 
     @Override
     protected synchronized void onDraw(Canvas canvas) {
@@ -551,34 +487,22 @@ public class RangeSeekBar<T extends Number> extends ImageView {
         minLabel = String.valueOf(getSelectedMinValue());
         maxLabel = String.valueOf(getSelectedMaxValue());
 
-        double minValue = Double.valueOf(minLabel);
-        double maxValue = Double.valueOf(maxLabel);
+        minLabel = convertValue(minLabel);
+        maxLabel = convertValue(maxLabel);
 
-        if (pressedThumb != null && pressedThumb.name().equals("MIN")) {
-            tempMin = getLabel(minValue);// + getCustomLabel(minValue);
-//            Log.d(TAG, "::::Min Value " + tempMin);
-        }
-        if (pressedThumb != null && pressedThumb.name().equals("MAX")) {
-            tempMax = getLabel(maxValue);// + getCustomLabel(maxValue);
-//            Log.d(TAG, "::: Max " + tempMax);
-        }
-
-        float minMaxLabelSize = Math.max(paint.measureText("0.00"), paint.measureText("0.00"));
+        float minMaxLabelSize = Math.max(paint.measureText(minLabel), paint.measureText(maxLabel));
         float minMaxHeight = mDistanceToTop + mTextSize;//mTextOffset + thumbHalfHeight + mTextSize / 3;
+
         padding = INITIAL_PADDING + thumbHalfWidth;
+
+        float xMin = padding + minMaxLabelSize;
         float xMax = getWidth() - (minMaxLabelSize + padding);
 
-        if (pressedThumb == null) {
-            tempMin = getLabel(minValue);// + getCustomLabel(minValue);
-            tempMax = getLabel(maxValue);// + getCustomLabel(maxValue);
-            canvas.drawText(tempMin, padding, minMaxHeight, paint);
-            canvas.drawText(tempMax, xMax - minMaxLabelSize, minMaxHeight, paint);
-        } else {
-            canvas.drawText(tempMin, padding, minMaxHeight, paint);
-            canvas.drawText(tempMax, xMax - minMaxLabelSize, minMaxHeight, paint);
-        }
-        canvas.drawText(getCustomLabel(minValue), padding + minMaxLabelSize, minMaxHeight, paint);
-        canvas.drawText(getCustomLabel(maxValue), xMax, minMaxHeight, paint);
+        canvas.drawText(minLabel, padding, minMaxHeight, paint);
+        canvas.drawText(maxLabel, xMax - minMaxLabelSize, minMaxHeight, paint);
+
+        canvas.drawText(getLabel_Min(), xMin, minMaxHeight, paint);
+        canvas.drawText(getLabel_Max(), xMax, minMaxHeight, paint);
 
         // draw seek bar background line
         mRect.left = padding;
@@ -616,29 +540,15 @@ public class RangeSeekBar<T extends Number> extends ImageView {
             // give text a bit more space here so it doesn't get cut off
             int offset = PixelUtil.dpToPx(getContext(), TEXT_LATERAL_PADDING_IN_DP);
 
-            minLabel = String.valueOf(getSelectedMinValue());
-            maxLabel = String.valueOf(getSelectedMaxValue());
-
-//            float minTextWidth = paint.measureText(minText) + offset;
-//            float maxTextWidth = paint.measureText(maxText) + offset;
-
-//            if (!mSingleThumb) {
-//                canvas.drawText(minText,
-//                        normalizedToScreen(normalizedMinValue) - minTextWidth * 0.5f,
-//                        mDistanceToTop + mTextSize,
-//                        paint);
-
-//            }
-
-//            canvas.drawText(maxText,
-//                    normalizedToScreen(normalizedMaxValue) - maxTextWidth * 0.5f,
-//                    mDistanceToTop + mTextSize,
-//                    paint);
+            String minText = String.valueOf(getSelectedMinValue());
+            String maxText = String.valueOf(getSelectedMaxValue());
+            minLabel = minText;
+            maxLabel = maxText;
         }
     }
 
     /**
-     * Overridden to save instance state when device orientation changes. This method is called automatically if you assign an id to the RangeSeekBar widget using the {@link #setId(int)} method. Other members of this class than the normalized min and max values don't need to be saved.
+     * Overridden to save instance state when device orientation changes. This method is called automatically if you assign an id to the RangeSeekBar_SQFT widget using the {@link #setId(int)} method. Other members of this class than the normalized min and max values don't need to be saved.
      */
     @Override
     protected Parcelable onSaveInstanceState() {
@@ -650,7 +560,7 @@ public class RangeSeekBar<T extends Number> extends ImageView {
     }
 
     /**
-     * Overridden to restore instance state when device orientation changes. This method is called automatically if you assign an id to the RangeSeekBar widget using the {@link #setId(int)} method.
+     * Overridden to restore instance state when device orientation changes. This method is called automatically if you assign an id to the RangeSeekBar_SQFT widget using the {@link #setId(int)} method.
      */
     @Override
     protected void onRestoreInstanceState(Parcelable parcel) {
@@ -791,13 +701,9 @@ public class RangeSeekBar<T extends Number> extends ImageView {
      *
      * @author Stephan Tittel (stephan.tittel@kom.tu-darmstadt.de)
      */
-//    public interface OnRangeSeekBarChangeListener<T> {
-//
-//        public void onRangeSeekBarValuesChanged(RangeSeekBar<?> bar, T minValue, T maxValue);
-//    }
+    public interface OnRangeSeekBar_SQFTChangeListener {
 
-    public interface OnRangeSeekBarChangeListener {
-        public void onRangeSeekBarValuesChanged(RangeSeekBar<?> bar, String minValue, String maxValue);
+        public void onRangeSeekBar_SQFTValuesChanged(RangeSeekBar_SQFT<?> bar,String minValue, String maxValue);
     }
 
     /**
@@ -806,6 +712,8 @@ public class RangeSeekBar<T extends Number> extends ImageView {
     private static enum Thumb {
         MIN, MAX
     }
+
+    ;
 
     /**
      * Utility enumeration used to convert between Numbers and doubles.

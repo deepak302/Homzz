@@ -36,7 +36,6 @@ public class Application {
 
     private static URL url = null;
 
-
     // validating email id
     public static boolean isValidEmail(String email) {
         String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"

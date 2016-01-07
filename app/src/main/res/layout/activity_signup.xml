@@ -22,7 +22,6 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:background="@drawable/edittext_design"
                 android:hint="@string/prompt_ed_full_name"
                 android:inputType="textCapSentences"
                 android:singleLine="true" />
@@ -35,7 +34,6 @@
                 android:layout_below="@+id/signup_ed_fname"
                 android:layout_margin="10dp"
                 android:autoLink="email"
-                android:background="@drawable/edittext_design"
                 android:hint="@string/prompt_ed_email"
                 android:inputType="textEmailAddress"
                 android:singleLine="true" />
@@ -47,7 +45,6 @@
                 android:layout_below="@+id/signup_ed_email"
                 android:layout_margin="10dp"
                 android:autoLink="phone"
-                android:background="@drawable/edittext_design"
                 android:hint="@string/prompt_ed_mobile"
                 android:inputType="phone"
                 android:maxLength="10"
@@ -61,7 +58,6 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/signup_ed_mobile"
                 android:layout_margin="10dp"
-                android:background="@drawable/edittext_design"
                 android:hint="@string/prompt_ed_password"
                 android:singleLine="true" />
 
@@ -71,7 +67,6 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/signup_ed_password"
                 android:layout_margin="10dp"
-                android:background="@drawable/edittext_design"
                 android:hint="@string/prompt_ed_cpassword"
                 android:singleLine="true" />
 
@@ -82,7 +77,6 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/signup_ed_cpassword"
                 android:layout_margin="10dp"
-                android:background="@drawable/edittext_design"
                 android:hint="@string/prompt_ed_city"
                 android:inputType="text"
                 android:singleLine="true" />

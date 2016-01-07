@@ -61,6 +61,7 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
     @Override
     public void onBackPressed() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Close App");
         builder.setMessage("Do you want to exit this application?");
         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override

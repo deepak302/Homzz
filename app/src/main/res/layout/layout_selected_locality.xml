@@ -2,7 +2,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="3dp"
     android:orientation="horizontal">
 
     <TextView
@@ -10,15 +9,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
+        android:padding="10dip"
         android:text="Locality Name"
+        android:textColor="@color/black"
         android:textSize="16sp" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/selected_locality_imgbtn_delete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:background="@mipmap/ic_launcher" />
+        android:layout_marginRight="10dp"
+        android:background="@mipmap/delete" />
 
 </RelativeLayout>

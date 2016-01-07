@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mentobile.utility.RangeSeekBar;
+import com.mentobile.utility.RangeSeekBar_SQFT;
 
 import java.util.ArrayList;
 
@@ -28,19 +30,15 @@ public class SearchFragment extends Fragment implements View.OnClickListener {
     private Button btnSearch;
 
     private ArrayList<String> arrListFilter = new ArrayList<>();
-    private TextView tvBDAny;
-    private TextView tvBD1;
-    private TextView tvBD2;
-    private TextView tvBD3;
-    private TextView tvBD4;
-    private TextView tvBD4Plus;
 
-    private TextView tvSQFTAny;
-    private TextView tvSQFT500;
-    private TextView tvSQFT1K;
-    private TextView tvSQFT2K;
-    private TextView tvSQFT3K;
-    private TextView tvSQFT4K;
+    private Button btnBD1;
+    private Button btnBD2;
+    private Button btnBD3;
+    private Button btnBD4;
+    private Button btnBD5;
+    private Button btnBD5Plus;
+
+    private TextView tvPriceRange;
 
     private TextView tvListOwner;
     private TextView tvListAgent;
@@ -60,20 +58,27 @@ public class SearchFragment extends Fragment implements View.OnClickListener {
 
     }
 
+    String msg = "";
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_search, container, false);
 
+        tvPriceRange = (TextView) view.findViewById(R.id.search_tv_price_range);
         // Add seekBar for Price Range
-        RangeSeekBar<Integer> seekBarPrice = new RangeSeekBar<Integer>(getActivity());
-        seekBarPrice.setRangeValues(5, 100);
-        seekBarPrice.setSelectedMinValue(20);
-        seekBarPrice.setSelectedMaxValue(60);
-        seekBarPrice.setOnRangeSeekBarChangeListener(new RangeSeekBar.OnRangeSeekBarChangeListener<Integer>() {
+        final RangeSeekBar<Integer> seekBarPrice = new RangeSeekBar<Integer>(getActivity());
+        seekBarPrice.setRangeValues(1, 280);
+        seekBarPrice.setSelectedMinValue(10);
+        seekBarPrice.setSelectedMaxValue(150);
+        seekBarPrice.setLabel_Min("Lacs");
+        seekBarPrice.setLabel_Max("Cr");
+        seekBarPrice.setNotifyWhileDragging(false);
+
+        seekBarPrice.setOnRangeSeekBarChangeListener(new RangeSeekBar.OnRangeSeekBarChangeListener() {
             @Override
-            public void onRangeSeekBarValuesChanged(RangeSeekBar<?> bar, Integer minValue, Integer maxValue) {
-                Toast.makeText(getActivity(), "Min Value " + minValue + " Max " + maxValue, Toast.LENGTH_SHORT).show();
+            public void onRangeSeekBarValuesChanged(RangeSeekBar<?> bar, String minValue, String maxValue) {
+                Log.d(TAG, ":::::::" + "Min Value " + minValue + " Max " + maxValue);
             }
         });
 
@@ -81,16 +86,17 @@ public class SearchFragment extends Fragment implements View.OnClickListener {
         LinearLayout layout = (LinearLayout) view.findViewById(R.id.seekbar_price);
         layout.addView(seekBarPrice);
 
-
         // Add seekBar for Area ( Sq Ft)
-        RangeSeekBar<Integer> seekBarArea = new RangeSeekBar<Integer>(getActivity());
-        seekBarArea.setRangeValues(10, 10000);
-        seekBarArea.setSelectedMinValue(500);
-        seekBarArea.setSelectedMaxValue(6000);
-        seekBarArea.setOnRangeSeekBarChangeListener(new RangeSeekBar.OnRangeSeekBarChangeListener<Integer>() {
+        RangeSeekBar_SQFT<Integer> seekBarArea = new RangeSeekBar_SQFT<Integer>(getActivity());
+        seekBarArea.setRangeValues(1, 100);
+        seekBarArea.setSelectedMinValue(10);
+        seekBarArea.setSelectedMaxValue(50);
+
+
+        seekBarArea.setOnRangeSeekBar_SQFTChangeListener(new RangeSeekBar_SQFT.OnRangeSeekBar_SQFTChangeListener() {
             @Override
-            public void onRangeSeekBarValuesChanged(RangeSeekBar<?> bar, Integer minValue, Integer maxValue) {
-                Toast.makeText(getActivity(), "Min Value " + minValue + " Max " + maxValue, Toast.LENGTH_SHORT).show();
+            public void onRangeSeekBar_SQFTValuesChanged(RangeSeekBar_SQFT<?> bar, String minValue, String maxValue) {
+                Log.d(TAG, ":::::::" + "Min Value " + minValue + " Max " + maxValue);
             }
         });
 
@@ -98,24 +104,23 @@ public class SearchFragment extends Fragment implements View.OnClickListener {
         LinearLayout layout_Area = (LinearLayout) view.findViewById(R.id.seekbar_area);
         layout_Area.addView(seekBarArea);
 
-        tvBDAny = (TextView) view.findViewById(R.id.search_tv_bd_any);
-        tvBDAny.setOnClickListener(this);
+        btnBD1 = (Button) view.findViewById(R.id.search_btn_bd1);
+        btnBD1.setOnClickListener(this);
 
-        tvBD1 = (TextView) view.findViewById(R.id.search_tv_bd1);
-        tvBD1.setOnClickListener(this);
+        btnBD2 = (Button) view.findViewById(R.id.search_btn_bd2);
+        btnBD2.setOnClickListener(this);
 
-        tvBD2 = (TextView) view.findViewById(R.id.search_tv_bd2);
-        tvBD2.setOnClickListener(this);
+        btnBD3 = (Button) view.findViewById(R.id.search_btn_bd3);
+        btnBD3.setOnClickListener(this);
 
-        tvBD3 = (TextView) view.findViewById(R.id.search_tv_bd3);
-        tvBD3.setOnClickListener(this);
+        btnBD4 = (Button) view.findViewById(R.id.search_btn_bd4);
+        btnBD4.setOnClickListener(this);
 
-        tvBD4 = (TextView) view.findViewById(R.id.search_tv_bd4);
-        tvBD4.setOnClickListener(this);
+        btnBD5 = (Button) view.findViewById(R.id.search_btn_bd5);
+        btnBD5.setOnClickListener(this);
 
-        tvBD4Plus = (TextView) view.findViewById(R.id.search_tv_bd4plus);
-        tvBD4Plus.setOnClickListener(this);
-
+        btnBD5Plus = (Button) view.findViewById(R.id.search_btn_5plus);
+        btnBD5Plus.setOnClickListener(this);
 
         edSearchAny = (EditText) view.findViewById(R.id.search_ed_anyType);
         edSearchAny.setOnClickListener(this);
@@ -126,32 +131,36 @@ public class SearchFragment extends Fragment implements View.OnClickListener {
         btnSearch = (Button) view.findViewById(R.id.search_btn_search);
         btnSearch.setOnClickListener(this);
 
-
         return view;
     }
 
     @Override
     public void onClick(View v) {
         String id = "" + v.getId();
+        if (v.isSelected()) {
+            v.setSelected(false);
+        } else {
+            v.setSelected(true);
+        }
         switch (v.getId()) {
-            case R.id.search_tv_bd_any:
-                setTVButton(tvBDAny, id);
-                break;
-            case R.id.search_tv_bd1:
-                setTVButton(tvBD1, id);
-                break;
-            case R.id.search_tv_bd2:
-                setTVButton(tvBD2, id);
-                break;
-            case R.id.search_tv_bd3:
-                setTVButton(tvBD3, id);
-                break;
-            case R.id.search_tv_bd4:
-                setTVButton(tvBD4, id);
-                break;
-            case R.id.search_tv_bd4plus:
-                setTVButton(tvBD4Plus, id);
-                break;
+//            case R.id.search_btn_bd1:
+//                setTVButton(tvBDAny, id);
+//                break;
+//            case R.id.search_btn_bd2:
+//                setTVButton(tvBD1, id);
+//                break;
+//            case R.id.search_btn_bd3:
+//                setTVButton(tvBD2, id);
+//                break;
+//            case R.id.search_btn_bd4:
+//                setTVButton(tvBD3, id);
+//                break;
+//            case R.id.search_btn_bd5:
+//                setTVButton(tvBD4, id);
+//                break;
+//            case R.id.search_btn_5plus:
+//                setTVButton(tvBD4Plus, id);
+//                break;
 
             // EditText
 

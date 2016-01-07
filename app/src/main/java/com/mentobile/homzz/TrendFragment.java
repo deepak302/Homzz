@@ -46,7 +46,6 @@ public class TrendFragment extends Fragment implements AdapterView.OnItemClickLi
         webService = new WebService();
         cProgressDialog = new CProgressDialog(getActivity());
         if (Application.isNetworkAvailable(getActivity())) {
-
             MyAsynchTask myAsynchTask = new MyAsynchTask();
             myAsynchTask.execute();
         }

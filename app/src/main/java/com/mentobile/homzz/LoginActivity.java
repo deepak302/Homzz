@@ -12,10 +12,9 @@ import android.content.pm.PackageManager;
 import android.content.pm.Signature;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
 import android.util.Log;
@@ -32,7 +31,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 import com.facebook.CallbackManager;
 import com.facebook.FacebookAuthorizationException;
 import com.facebook.FacebookCallback;
@@ -43,6 +41,8 @@ import com.facebook.GraphResponse;
 import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -56,11 +56,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.InputStream;
+import java.net.URL;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Arrays;
-
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
@@ -87,6 +87,19 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onStop() {
         super.onStop();
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        Action viewAction = Action.newAction(
+                Action.TYPE_VIEW, // TODO: choose an action type.
+                "Login Page", // TODO: Define a title for the content shown.
+                // TODO: If you have web page content that matches this app activity's content,
+                // make sure this auto-generated web page URL is correct.
+                // Otherwise, set the URL to null.
+                Uri.parse("http://host/path"),
+                // TODO: Make sure this auto-generated app deep link URI is correct.
+                Uri.parse("android-app://com.mentobile.homzz/http/host/path")
+        );
+        AppIndex.AppIndexApi.end(mGoogleApiClient, viewAction);
         Log.d(TAG, "OnStop");
 //        if (mGoogleApiClient.isConnected()) {
 //            mGoogleApiClient.disconnect();
@@ -100,6 +113,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         AppEventsLogger.deactivateApp(this);
 
         //EndFacebook
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        mGoogleApiClient.disconnect();
     }
 
     @Override
@@ -158,11 +174,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         webService = new WebService();
         int resultcode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
         Log.d(TAG, ":::::Google Result Code " + resultcode);
+        // ATTENTION: This "addApi(AppIndex.API)"was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
                 .addApi(Plus.API, Plus.PlusOptions.builder().build())
-                .addScope(Plus.SCOPE_PLUS_LOGIN).build();
+                .addScope(Plus.SCOPE_PLUS_LOGIN).addApi(AppIndex.API).build();
         mGoogleApiClient.connect();
         Log.d(TAG, ":::::GoogleApiClient " + mGoogleApiClient.isConnected());
         //  setCustomActionBar();
@@ -307,6 +325,26 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             }
         });
         dialog.show();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        mGoogleApiClient.connect();
+        Action viewAction = Action.newAction(
+                Action.TYPE_VIEW, // TODO: choose an action type.
+                "Login Page", // TODO: Define a title for the content shown.
+                // TODO: If you have web page content that matches this app activity's content,
+                // make sure this auto-generated web page URL is correct.
+                // Otherwise, set the URL to null.
+                Uri.parse("http://host/path"),
+                // TODO: Make sure this auto-generated app deep link URI is correct.
+                Uri.parse("android-app://com.mentobile.homzz/http/host/path")
+        );
+        AppIndex.AppIndexApi.start(mGoogleApiClient, viewAction);
     }
 
     private class MyAsynchTask_ForgotPassword extends AsyncTask<String, String, String> {
@@ -467,7 +505,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             String url = urls[0];
             Bitmap icon = null;
             try {
-                InputStream in = new java.net.URL(url).openStream();
+                InputStream in = new URL(url).openStream();
                 icon = BitmapFactory.decodeStream(in);
             } catch (Exception e) {
                 Log.e("Error", e.getMessage());

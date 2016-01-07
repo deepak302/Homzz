@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_selected="true">
+        <shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="oval">
+            <gradient android:angle="270" android:endColor="@color/chocolate" android:startColor="@color/chocolate" />
+        </shape>
+    </item>
+    <item android:state_selected="false">
+        <shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="oval">
+            <gradient android:angle="270" android:endColor="#ffffffff" android:startColor="#ffffffff" />
+        </shape>
+    </item>
+</selector>

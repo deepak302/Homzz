@@ -4,8 +4,11 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -19,11 +22,19 @@ public class SelLocalityAdapter extends ArrayAdapter<String> {
     private int resourceID;
     private ArrayList<String> arrayList = new ArrayList<>();
 
-    public SelLocalityAdapter(Context context, int resource, ArrayList<String> arrayList) {
+    private CustomButtonListener customButtonListener;
+
+    public interface CustomButtonListener {
+        void onImageButtonClickListener(int position);
+
+    }
+
+    public SelLocalityAdapter(Context context, int resource, ArrayList<String> arrayList, CustomButtonListener customButtonListener) {
         super(context, resource, arrayList);
         this.context = context;
         this.resourceID = resource;
         this.arrayList = arrayList;
+        this.customButtonListener = customButtonListener;
     }
 
     @Override
@@ -55,7 +66,6 @@ public class SelLocalityAdapter extends ArrayAdapter<String> {
             // This must be done for performance reasons
             holder = new Holder();
 
-            holder.imgBtnDeleteLocality = (ImageButton) view.findViewById(R.id.selected_locality_imgbtn_delete);
             holder.tvLocalityName = (TextView) view.findViewById(R.id.selected_locality_tv_name);
             view.setTag(holder);
         } else {
@@ -71,7 +81,7 @@ public class SelLocalityAdapter extends ArrayAdapter<String> {
      * View holder for the views we need access to
      */
     static class Holder {
-        private ImageButton imgBtnDeleteLocality;
+
         private TextView tvLocalityName;
     }
 }

@@ -1,7 +1,3 @@
-<!--I use android:fitsSystemWindows because I am changing the color of the statusbar as well-->
-
-<!--<include layout="@layout/main_toolbar" />-->
-
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">

@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.WindowManager;
+import android.webkit.WebView;
 
 public class SplashActivity extends Activity {
 
@@ -20,8 +21,8 @@ public class SplashActivity extends Activity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_splash);
-        getActionBar().hide();
         networkErrorFragment = new NetworkErrorFragment();
+
     }
 
     @Override

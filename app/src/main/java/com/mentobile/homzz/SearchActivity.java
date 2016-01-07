@@ -2,6 +2,7 @@ package com.mentobile.homzz;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.text.SpannableStringBuilder;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
@@ -33,10 +34,11 @@ public class SearchActivity extends ActionBarActivity {
 
         autoCompleteTextView = (AutoCompleteTextView) findViewById(R.id.search_actv_data);
         for (int i = 0; i < 100; i++) {
-            arrSearchAll.add("Project Name " + i + "Builder " + i + "Sector " + i);
+            arrSearchAll.add("Project" + i );
         }
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, arrSearchAll);
         autoCompleteTextView.setAdapter(adapter);
+
     }
 
     @Override
