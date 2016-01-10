@@ -17,6 +17,8 @@ import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.mentobile.utility.Utility;
+
 public class NetworkErrorFragment extends Fragment {
 
     private Button btnTryAgain;
@@ -39,7 +41,7 @@ public class NetworkErrorFragment extends Fragment {
         btnTryAgain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Application.isNetworkAvailable(getActivity())) {
+                if (Utility.isNetworkAvailable(getActivity())) {
                     Intent intent = new Intent(getActivity(), MainActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);

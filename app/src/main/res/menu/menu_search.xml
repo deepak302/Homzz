@@ -2,9 +2,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.mentobile.homzz.SearchActivity">
-    <item
+   <!-- <item
         android:id="@+id/action_done"
         android:title="@string/actionbar_done"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="ifRoom" />-->
 
 </menu>

@@ -79,8 +79,8 @@
 
     //SeacrhView
 
-    <string name="search_city">Location / Developer / Project name</string>
-    <string name="search_location">Search Location</string>
+    <string name="search_city">locations or developers or projects</string>
+    <string name="search_location">Search Locality</string>
     <string name="demo_min_label">Lacs</string>
     <string name="demo_max_label">Crores</string>
     <string name="demo_sqft">SqFt</string>
@@ -93,8 +93,10 @@
     <string name="title_activity_search">SearchActivity</string>
     <string name="title_activity_favourite">FavouriteActivity</string>
 
-
-
+    <string name="default_chip">Default</string>
+    <string name="attrs_chip">With custom XML attributes</string>
+    <string name="with_layout">With overall layout res, background color and click listener</string>
+    <string name="with_override">With overrided ChipViewAdapter getLayoutRes and getBackgroundColor</string>
 
 
 </resources>

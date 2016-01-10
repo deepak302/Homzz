@@ -87,7 +87,7 @@ public class ProjectListAdapter extends ArrayAdapter<ProjectListItem>  {
         final ProjectListItem projectListItem = arrayList.get(position);
 
         try {
-            URL url = new URL(Application.PATH_IMAGE_FOLDER + projectListItem.getImageName());
+            URL url = new URL(Application.URL_IMAGES + projectListItem.getImageName());
             uri = url.toURI();
         } catch (URISyntaxException e) {
             e.printStackTrace();

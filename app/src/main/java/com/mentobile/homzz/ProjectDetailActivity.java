@@ -100,7 +100,7 @@ public class ProjectDetailActivity extends ActionBarActivity implements View.OnC
 
         @Override
         protected String doInBackground(String... params) {
-            json = webService.makeHttpRequest(Application.WS_TRENDING, listValue);
+            json = webService.makeHttpRequest(Application.URL_TRENDING, listValue);
             try {
                 responseCode = json.getString("responsecode");
                 if (!responseCode.equals("000")) {

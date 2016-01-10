@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.mentobile.utility.Utility;
 import com.mentobile.utility.WebService;
 
 import org.apache.http.NameValuePair;
@@ -45,7 +46,7 @@ public class TrendFragment extends Fragment implements AdapterView.OnItemClickLi
         listValue = new ArrayList<>();
         webService = new WebService();
         cProgressDialog = new CProgressDialog(getActivity());
-        if (Application.isNetworkAvailable(getActivity())) {
+        if (Utility.isNetworkAvailable(getActivity())) {
             MyAsynchTask myAsynchTask = new MyAsynchTask();
             myAsynchTask.execute();
         }
@@ -94,27 +95,28 @@ public class TrendFragment extends Fragment implements AdapterView.OnItemClickLi
 
         @Override
         protected String doInBackground(String... params) {
-            json = webService.makeHttpRequest(Application.WS_TRENDING, listValue);
+            json = webService.makeHttpRequest(Application.URL_TRENDING, listValue);
             try {
-                responseCode = json.getString("responsecode");
-                if (responseCode.equals("100")) {
-                    JSONArray jsonArray = json.getJSONArray("description");
-                    //  Log.d(TAG, "::::::JSon Array " + jsonArray.toString());
-                    int length = jsonArray.length();
-                    for (int i = 1; i < length; i++) {
+                responseCode = json.getString("success");
+                if (!responseCode.equals("0")) {
+                    JSONArray jsonArray = json.getJSONArray("trending");
+                    for (int i = 1; i < jsonArray.length(); i++) {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
-                        int projectID = jsonObject.getInt("id");
-                        String developerName = jsonObject.getString("developer");
-                        String area = jsonObject.getString("plot_area");
+
+                        String trend_id = jsonObject.getString("trend_id");
+                        String prj_id = jsonObject.getString("prj_id");
+                        String prj_name = jsonObject.getString("prj_name");
+                        String dev_name = jsonObject.getString("dev_name");
+                        String area = jsonObject.getString("area");
                         String location = jsonObject.getString("location");
-                        String imageName = jsonObject.getString("image_wall");
+                        String imageName = jsonObject.getString("prj_images");
                         int price = jsonObject.getInt("price");
-                        ProjectListItem projectListItem = new ProjectListItem(projectID, imageName, developerName, location, "", area, "" + price, false);
+                        ProjectListItem projectListItem = new ProjectListItem(prj_id, imageName, dev_name, location, "", area, "" + price, false);
                         arrProjectListItems.add(projectListItem);
                     }
                     return responseCode;
                 } else {
-                    responseMSG = json.getString("description");
+                    responseMSG = json.getString("message");
                 }
                 return responseMSG;
             } catch (JSONException e) {

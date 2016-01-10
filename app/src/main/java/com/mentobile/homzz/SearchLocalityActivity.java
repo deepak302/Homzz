@@ -17,15 +17,25 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.mentobile.utility.GetDataUsingWService;
+import com.mentobile.utility.WebService;
+
+import org.apache.http.NameValuePair;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Locale;
 
 
-public class SearchLocalityActivity extends ActionBarActivity implements AdapterView.OnItemClickListener {
+public class SearchLocalityActivity extends ActionBarActivity implements AdapterView.OnItemClickListener, GetDataUsingWService.GetWebServiceData {
 
 
     private static final String TAG = "SearchLocalityActivity";
     private ArrayList<String> arrSearchLocality = new ArrayList<>();
+    private ArrayList<String> tempSearchLocality = new ArrayList<>();
     private ArrayList<String> arrSelectedLocality = new ArrayList<>();
 
     private EditText edLocation;
@@ -35,10 +45,6 @@ public class SearchLocalityActivity extends ActionBarActivity implements Adapter
 
     private ArrayAdapter<String> adapterLocality;
     private ArrayAdapter<String> adapterSelLocality;
-
-    String products[] = {"Dell Inspiron", "HTC One X", "HTC Wildfire S", "HTC Sense", "HTC Sensation XE",
-            "iPhone 4S", "Samsung Galaxy Note 800",
-            "Samsung Galaxy S3", "MacBook Air", "Mac Mini", "MacBook Pro", "Sector 1", "Sector 2", "Sector 3", "Sector 4", "Sector 5",};
 
     @Override
     public void onBackPressed() {
@@ -59,10 +65,6 @@ public class SearchLocalityActivity extends ActionBarActivity implements Adapter
         relativeLayout = (RelativeLayout) findViewById(R.id.search_rl_selected_locality);
         relativeLayout.setVisibility(View.GONE);
 
-        for (String product : products) {
-            arrSearchLocality.add(product);
-        }
-
         edLocation = (EditText) findViewById(R.id.search_ed_locality);
 
         listViewLocality = (ListView) findViewById(R.id.search_lv_data);
@@ -72,13 +74,13 @@ public class SearchLocalityActivity extends ActionBarActivity implements Adapter
 
         listViewSelLocality = (ListView) findViewById(R.id.search_lv_select_locality);
         adapterSelLocality = new ArrayAdapter<String>(this, R.layout.layout_selected_locality, R.id.selected_locality_tv_name, arrSelectedLocality);
-//        adapterSelLocality = new SelLocalityAdapter(getApplicationContext(), R.layout.layout_selected_locality, arrSelectedLocality, this);
         listViewSelLocality.setAdapter(adapterSelLocality);
         listViewSelLocality.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String location = arrSelectedLocality.get(position);
 
+                tempSearchLocality.add(location);
                 arrSearchLocality.add(location);
                 arrSelectedLocality.remove(location);
 
@@ -93,7 +95,6 @@ public class SearchLocalityActivity extends ActionBarActivity implements Adapter
             }
         });
 
-
         edLocation.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -107,23 +108,16 @@ public class SearchLocalityActivity extends ActionBarActivity implements Adapter
 
             @Override
             public void afterTextChanged(Editable s) {
-                Log.d(TAG, "::::afterTextChanged " + s);
-                // SearchLocalityActivity.this.adapterLocality.getFilter().filter(s);
-
                 String str = s.toString().toLowerCase(Locale.getDefault());
                 arrSearchLocality.clear();
                 if (str.length() == 0) {
-                    for (String product : products) {
-                        if (!arrSelectedLocality.contains(product)) {
-                            arrSearchLocality.add(product);
-                        }
-                    }
+                    arrSearchLocality.addAll(tempSearchLocality);
                 } else {
-                    for (String product : products) {
+                    for (int i = 0; i < tempSearchLocality.size(); i++) {
+                        String product = tempSearchLocality.get(i);
                         String pro = product.toLowerCase(Locale.getDefault());
                         if (pro.contains(str)) {
                             arrSearchLocality.add(product);
-//                            Log.d(TAG, ":::::Array " + product);
                         }
                     }
                 }
@@ -131,6 +125,10 @@ public class SearchLocalityActivity extends ActionBarActivity implements Adapter
                 adapterLocality.notifyDataSetChanged();
             }
         });
+
+        ArrayList<NameValuePair> nameValuePairs = new ArrayList<>();
+        GetDataUsingWService getDataUsingWService = new GetDataUsingWService(this, Application.URL_SEARCH_LOCATION, 0, nameValuePairs, true, this);
+        Application.startAsyncTaskInParallel(getDataUsingWService);
     }
 
     @Override
@@ -144,7 +142,6 @@ public class SearchLocalityActivity extends ActionBarActivity implements Adapter
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-            case R.id.action_done:
                 onBackPressed();
                 break;
         }
@@ -155,7 +152,7 @@ public class SearchLocalityActivity extends ActionBarActivity implements Adapter
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         String location = arrSearchLocality.get(position);
 
-        arrSearchLocality.remove(location);
+        tempSearchLocality.remove(location);
         arrSelectedLocality.add(location);
 
         adapterLocality.notifyDataSetChanged();
@@ -167,7 +164,22 @@ public class SearchLocalityActivity extends ActionBarActivity implements Adapter
         } else {
             relativeLayout.setVisibility(View.GONE);
         }
-        Log.d(TAG, ":::::Position " + arrSelectedLocality.size());
     }
 
+    @Override
+    public void getWebServiceData_JSON(JSONObject jsonObject, int serviceCounter) {
+        try {
+            JSONArray jsonArray = jsonObject.getJSONArray("locality");
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject jsonObject1 = jsonArray.getJSONObject(i);
+                String location = jsonObject1.getString("location");
+                arrSearchLocality.add(location);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        tempSearchLocality.addAll(arrSearchLocality);
+        Collections.sort(arrSearchLocality);
+        adapterLocality.notifyDataSetChanged();
+    }
 }

@@ -10,19 +10,22 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1.2"
-        android:background="@color/white"
         android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/search_ed_locality"
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/edittext_design"
-            android:drawableRight="@android:drawable/ic_menu_search"
-            android:hint="@string/search_location"
-            android:singleLine="true"
-            android:textColorHint="@color/counter_text_bg"
-            android:textStyle="normal" />
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/search_ed_locality"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/search_location"
+                android:singleLine="true"
+                android:textColorHint="@color/counter_text_bg"
+                android:textStyle="normal" />
+
+        </android.support.design.widget.TextInputLayout>
 
         <ListView
             android:id="@+id/search_lv_data"
@@ -37,16 +40,17 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="5dp"
-        android:layout_weight=".8"
-        android:background="@color/white">
+        android:layout_weight=".8">
 
         <TextView
             android:id="@+id/search_tv_selected_locality"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/button_selector"
             android:gravity="center_horizontal"
+            android:padding="6dp"
             android:text="Selected Locality"
-            android:textColor="@color/brown"
+            android:textColor="@color/white"
             android:textSize="18sp"
             android:textStyle="bold" />
 

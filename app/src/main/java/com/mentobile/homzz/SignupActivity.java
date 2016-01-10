@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.mentobile.utility.DBHandler;
+import com.mentobile.utility.Utility;
 import com.mentobile.utility.WebService;
 
 import org.apache.http.NameValuePair;
@@ -77,7 +78,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
             public void onFocusChange(View v, boolean hasFocus) {
                 strEmail = edEmail.getText().toString().trim();
                 if (strEmail.length() > 1 && !hasFocus) {
-                    if (!Application.isValidEmail(strEmail)) {
+                    if (!Utility.isValidEmail(strEmail)) {
                         edEmail.setError(getString(R.string.error_email_verify));
                     }
                 }
@@ -160,7 +161,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
                             cProgressDialog.hide();
                             if (result.equalsIgnoreCase("100")) {
                                 Log.d(TAG, "::::Email " + strEmail);
-                                Application.setDataInSharedPreference(SignupActivity.this, Application.SP_LOGIN_LOGOUT, "email", strEmail);
+                                Utility.setDataInSharedPreference(SignupActivity.this, "login", "email", strEmail);
                                 ContentValues values = new ContentValues();
                                 values.put("NAME", name);
                                 values.put("EMAIL", strEmail);

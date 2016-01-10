@@ -26,6 +26,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.mentobile.utility.DBHandler;
 import com.mentobile.utility.UpdateNotification;
+import com.mentobile.utility.Utility;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -161,7 +162,7 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
     }
 
     private void setProfile() {
-        String email = Application.getDataFromSharedPreference(this, Application.SP_LOGIN_LOGOUT, "email");
+        String email = Utility.getDataFromSharedPreference(this, "login", "email");
         if (email != null && email.length() > 5) {
             NvItems items = (arrNVItems).get(5);
             items.setTitle(getString(R.string.prompt_logout));
@@ -186,7 +187,7 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Toast.makeText(getApplicationContext(), "Item click " + position, Toast.LENGTH_SHORT).show();
-        if (Application.getDataFromSharedPreference(this, Application.SP_LOGIN_LOGOUT, "email") != null) {
+        if (Utility.getDataFromSharedPreference(this, "login", "email") != null) {
             switch (position) {
                 case 0:// header
                     break;
@@ -206,8 +207,8 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
 
                     break;
                 case 6:
-                    if (Application.getDataFromSharedPreference(this, Application.SP_LOGIN_LOGOUT, "email") != null) {
-                        Application.clearSharedPreferenceFile(this, Application.SP_LOGIN_LOGOUT);
+                    if (Utility.getDataFromSharedPreference(this, "login", "email") != null) {
+                        Utility.clearSharedPreferenceFile(this, "login");
                         NvItems items = arrNVItems.get(position - 1);
                         items.setTitle(getString(R.string.prompt_login));
                         nvAdapter.notifyDataSetChanged();
@@ -244,9 +245,9 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
             return true;
         }
         switch (item.getItemId()) {
-            case R.id.action_done:
-                Log.d(TAG, ":::::Done Clicked");
-                break;
+//            case R.id.action_done:
+//                Log.d(TAG, ":::::Done Clicked");
+//                break;
         }
         return super.onOptionsItemSelected(item);
     }

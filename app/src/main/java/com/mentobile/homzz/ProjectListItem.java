@@ -7,7 +7,7 @@ import android.graphics.Bitmap;
  */
 public class ProjectListItem {
 
-    private int projectID;
+    private String projectID;
     private String imageName;
     private String builderName;
     private String location;
@@ -16,7 +16,7 @@ public class ProjectListItem {
     private String price;
     private boolean isLike ;
 
-    public ProjectListItem(int projectID, String imageName, String builderName, String location, String areaBHK, String area, String price, boolean isLike) {
+    public ProjectListItem(String projectID, String imageName, String builderName, String location, String areaBHK, String area, String price, boolean isLike) {
         this.projectID = projectID;
         this.imageName = imageName;
         this.builderName = builderName;
@@ -27,11 +27,11 @@ public class ProjectListItem {
         this.isLike = isLike ;
     }
 
-    public int getProjectID() {
+    public String getProjectID() {
         return projectID;
     }
 
-    public void setProjectID(int projectID) {
+    public void setProjectID(String projectID) {
         this.projectID = projectID;
     }
 

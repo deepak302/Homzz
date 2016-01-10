@@ -48,6 +48,7 @@ import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.plus.Plus;
 import com.google.android.gms.plus.model.people.Person;
+import com.mentobile.utility.Utility;
 import com.mentobile.utility.WebService;
 
 import org.apache.http.NameValuePair;
@@ -225,7 +226,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 Log.d(TAG, ":::::Password " + password);
                 if (username.length() < 1) {
                     Toast.makeText(getApplicationContext(), getString(R.string.error_username), Toast.LENGTH_SHORT).show();
-                } else if (!Application.isValidEmail(username)) {
+                } else if (!Utility.isValidEmail(username)) {
                     Toast.makeText(getApplicationContext(), getString(R.string.error_email_verify), Toast.LENGTH_SHORT).show();
                 } else if (password.length() < 1) {
                     Toast.makeText(getApplicationContext(), getString(R.string.error_password), Toast.LENGTH_SHORT).show();
@@ -265,7 +266,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                                 LOGIN_TYPE = 1;
                                 Profile.getProfile().setEmailID(edUserName.getText().toString().trim());
-                                Application.setDataInSharedPreference(LoginActivity.this, Application.SP_LOGIN_LOGOUT, "email",
+                                Utility.setDataInSharedPreference(LoginActivity.this, "login", "email",
                                         edUserName.getText().toString().trim());
                                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
@@ -315,7 +316,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 Log.d(TAG, ":::::Username " + username);
                 if (username.length() < 1) {
                     Toast.makeText(getApplicationContext(), getString(R.string.error_username), Toast.LENGTH_SHORT).show();
-                } else if (!Application.isValidEmail(username)) {
+                } else if (!Utility.isValidEmail(username)) {
                     Toast.makeText(getApplicationContext(), getString(R.string.error_email_verify), Toast.LENGTH_SHORT).show();
                 } else {
                     MyAsynchTask_ForgotPassword myAsynchTask_forgotPassword = new MyAsynchTask_ForgotPassword();
@@ -435,7 +436,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 Profile.getProfile().setName(currentPerson.getDisplayName());
                 Profile.getProfile().setEmailID(email);
 //                Log.d(TAG, "::::Display Name " + currentPerson.getDisplayName() + " Email " + email);
-                Application.setDataInSharedPreference(LoginActivity.this, Application.SP_LOGIN_LOGOUT, "email", email);
+                Utility.setDataInSharedPreference(LoginActivity.this, "login", "email", email);
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 cProgressDialog.hide();
@@ -592,7 +593,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                     String name = (String) jsonObject.get("name");
                                     Profile.getProfile().setName(name);
                                     Profile.getProfile().setEmailID(email);
-                                    Application.setDataInSharedPreference(LoginActivity.this, Application.SP_LOGIN_LOGOUT, "email", email);
+                                    Utility.setDataInSharedPreference(LoginActivity.this, "login", "email", email);
                                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                     cProgressDialog.hide();

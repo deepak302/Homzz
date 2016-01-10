@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.WindowManager;
 import android.webkit.WebView;
 
+import com.mentobile.utility.Utility;
+
 public class SplashActivity extends Activity {
 
     private String TAG = "SplashActivity";
@@ -42,7 +44,7 @@ public class SplashActivity extends Activity {
                             }
                             isThread = false;
                             // Application.clearSharedPreferenceFile(SplashActivity.this, Application.SP_LOGIN_LOGOUT);
-                            if (Application.isNetworkAvailable(getApplicationContext())) {
+                            if (Utility.isNetworkAvailable(getApplicationContext())) {
                                 Intent intent = new Intent(SplashActivity.this, MainActivity.class);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                                 startActivity(intent);

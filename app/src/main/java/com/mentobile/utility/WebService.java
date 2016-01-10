@@ -28,25 +28,22 @@ public class WebService {
     final String TAG = "WebService";
     static JSONObject jObj = null;
     static String json = "";
-    String url = "https://maps.googleapis.com/maps/api/geocode/json?address=";
-    private JSONArray jsonArray;
 
     // constructor
     public WebService() {
 
     }
 
-    public JSONObject makeHttpRequest(String methodname, List<NameValuePair> params) {
+    public JSONObject makeHttpRequest(String url, List<NameValuePair> params) {
 
         // Making HTTP request
         try {
 
-            Log.d(TAG, ":::::URl " + Application.URL + methodname + ".php");
+            Log.d(TAG, ":::::URl " + url);
             DefaultHttpClient httpClient = new DefaultHttpClient();
-            HttpPost httpPost = new HttpPost(Application.URL + methodname + ".php");
+            HttpPost httpPost = new HttpPost(url);
             //Depends on your web service
             // httpPost.setHeader("Content-Type", "application/json");
-            // Log.d(TAG,"::::::Params "+params);
             httpPost.setEntity(new UrlEncodedFormEntity(params));
 //            Log.d(TAG,":::::URl "+httpPost.getEntity());
             HttpResponse httpResponse = httpClient.execute(httpPost);

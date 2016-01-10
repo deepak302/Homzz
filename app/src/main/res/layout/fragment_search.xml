@@ -1,5 +1,5 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:chip="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,167 +7,167 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/search_btn_search"
-        android:visibility="visible">
+     <ScrollView
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_above="@+id/search_btn_search"
+         android:visibility="visible">
 
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+         <LinearLayout
+             android:layout_width="fill_parent"
+             android:layout_height="wrap_content"
+             android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/search_ed_anyType"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:background="@drawable/edittext_design"
-                android:drawableRight="@android:drawable/ic_menu_search"
-                android:focusable="false"
-                android:hint="@string/search_city"
-                android:singleLine="true"
-                android:textColorHint="@color/counter_text_bg"
-                android:textSize="13sp" />
+             <EditText
+                 android:id="@+id/search_ed_anyType"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_margin="10dp"
+                 android:background="@drawable/edittext_design"
+                 android:drawableRight="@android:drawable/ic_menu_search"
+                 android:focusable="false"
+                 android:hint="@string/search_city"
+                 android:singleLine="true"
+                 android:textColorHint="@color/counter_text_bg"
+                 android:textSize="13sp" />
 
-            <EditText
-                android:id="@+id/search_ed_locality"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:background="@drawable/edittext_design"
-                android:drawableRight="@drawable/spinner_background_ab_style"
-                android:focusable="false"
-                android:hint="@string/spinner_select_locality"
-                android:singleLine="true"
-                android:textColorHint="@color/counter_text_bg"
-                android:textSize="13sp" />
+             <EditText
+                 android:id="@+id/search_ed_locality"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_margin="10dp"
+                 android:background="@drawable/edittext_design"
+                 android:drawableRight="@drawable/spinner_background_ab_style"
+                 android:focusable="false"
+                 android:hint="@string/spinner_select_locality"
+                 android:singleLine="true"
+                 android:textColorHint="@color/counter_text_bg"
+                 android:textSize="13sp" />
 
-            <TextView
-                android:id="@+id/search_tv_propertytype"
-                style="@style/textview_header"
-                android:text="Property Type" />
+             <TextView
+                 android:id="@+id/search_tv_propertytype"
+                 style="@style/textview_header"
+                 android:text="Property Type" />
 
-            <HorizontalScrollView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal">
+             <HorizontalScrollView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_gravity="center_horizontal">
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                 <LinearLayout
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:orientation="horizontal">
 
-                    <ImageView
-                        android:id="@+id/search_img_apartment"
-                        android:layout_width="90dp"
-                        android:layout_height="80dp"
-                        android:background="@drawable/apartment" />
+                     <ImageButton
+                         android:id="@+id/search_img_apartment"
+                         android:layout_width="90dp"
+                         android:layout_height="80dp"
+                         android:background="@drawable/apartment_un" />
 
-                    <ImageView
-                        android:id="@+id/search_img_builder_floor"
-                        android:layout_width="90dp"
-                        android:layout_height="80dp"
-                        android:layout_marginLeft="1dp"
-                        android:background="@drawable/floor" />
+                     <ImageButton
+                         android:id="@+id/search_img_builder_floor"
+                         android:layout_width="90dp"
+                         android:layout_height="80dp"
+                         android:layout_marginLeft="1dp"
+                         android:background="@drawable/floor_un" />
 
-                    <ImageView
-                        android:id="@+id/search_img_farm_house"
-                        android:layout_width="90dp"
-                        android:layout_height="80dp"
-                        android:layout_marginLeft="1dp"
-                        android:background="@drawable/farm_house" />
+                     <ImageButton
+                         android:id="@+id/search_img_farm_house"
+                         android:layout_width="90dp"
+                         android:layout_height="80dp"
+                         android:layout_marginLeft="1dp"
+                         android:background="@drawable/farm_house_un" />
 
-                    <ImageView
-                        android:id="@+id/search_img_house"
-                        android:layout_width="90dp"
-                        android:layout_height="80dp"
-                        android:layout_marginLeft="1dp"
-                        android:background="@drawable/house" />
+                     <ImageButton
+                         android:id="@+id/search_img_house"
+                         android:layout_width="90dp"
+                         android:layout_height="80dp"
+                         android:layout_marginLeft="1dp"
+                         android:background="@drawable/house_un" />
 
-                    <ImageView
-                        android:id="@+id/search_img_plot"
-                        android:layout_width="90dp"
-                        android:layout_height="80dp"
-                        android:layout_marginLeft="1dp"
-                        android:background="@drawable/land" />
+                     <ImageButton
+                         android:id="@+id/search_img_land"
+                         android:layout_width="90dp"
+                         android:layout_height="80dp"
+                         android:layout_marginLeft="1dp"
+                         android:background="@drawable/land_un" />
 
-                </LinearLayout>
-            </HorizontalScrollView>
+                 </LinearLayout>
+             </HorizontalScrollView>
 
-            <TextView
-                android:id="@+id/search_tv_badroom"
-                style="@style/textview_header"
-                android:text="Bedrooms" />
+             <TextView
+                 android:id="@+id/search_tv_badroom"
+                 style="@style/textview_header"
+                 android:text="Bedrooms" />
 
-            <HorizontalScrollView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+             <HorizontalScrollView
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content">
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:orientation="horizontal">
+                 <LinearLayout
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_gravity="center_horizontal"
+                     android:orientation="horizontal">
 
-                    <Button
-                        android:id="@+id/search_btn_bd1"
-                        style="@style/button_property_type"
-                        android:text="1" />
+                     <Button
+                         android:id="@+id/search_btn_bd1"
+                         style="@style/button_property_type"
+                         android:text="1" />
 
-                    <Button
-                        android:id="@+id/search_btn_bd2"
-                        style="@style/button_property_type"
-                        android:text="2" />
+                     <Button
+                         android:id="@+id/search_btn_bd2"
+                         style="@style/button_property_type"
+                         android:text="2" />
 
-                    <Button
-                        android:id="@+id/search_btn_bd3"
-                        style="@style/button_property_type"
-                        android:text="3" />
+                     <Button
+                         android:id="@+id/search_btn_bd3"
+                         style="@style/button_property_type"
+                         android:text="3" />
 
-                    <Button
-                        android:id="@+id/search_btn_bd4"
-                        style="@style/button_property_type"
-                        android:text="4" />
+                     <Button
+                         android:id="@+id/search_btn_bd4"
+                         style="@style/button_property_type"
+                         android:text="4" />
 
-                    <Button
-                        android:id="@+id/search_btn_bd5"
-                        style="@style/button_property_type"
-                        android:text="5" />
+                     <Button
+                         android:id="@+id/search_btn_bd5"
+                         style="@style/button_property_type"
+                         android:text="5" />
 
-                    <Button
-                        android:id="@+id/search_btn_5plus"
-                        style="@style/button_property_type"
-                        android:text="5+" />
+                     <Button
+                         android:id="@+id/search_btn_5plus"
+                         style="@style/button_property_type"
+                         android:text="5+" />
 
-                </LinearLayout>
-            </HorizontalScrollView>
+                 </LinearLayout>
+             </HorizontalScrollView>
 
-            <TextView
-                android:id="@+id/search_tv_price_range"
-                style="@style/textview_header"
-                android:text="Price Range" />
+             <TextView
+                 android:id="@+id/search_tv_price_range"
+                 style="@style/textview_header"
+                 android:text="Price Range" />
 
-            <LinearLayout
-                android:id="@+id/seekbar_price"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal" />
+             <LinearLayout
+                 android:id="@+id/seekbar_price"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:orientation="horizontal" />
 
-            <TextView
-                android:id="@+id/search_tv_sqft"
-                style="@style/textview_header"
-                android:text="Area" />
+             <TextView
+                 android:id="@+id/search_tv_sqft"
+                 style="@style/textview_header"
+                 android:text="Area" />
 
-            <LinearLayout
-                android:id="@+id/seekbar_area"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:orientation="horizontal" />
-        </LinearLayout>
-    </ScrollView>
+             <LinearLayout
+                 android:id="@+id/seekbar_area"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_marginBottom="10dp"
+                 android:orientation="horizontal" />
+         </LinearLayout>
+     </ScrollView>
 
     <Button
         android:id="@+id/search_btn_search"

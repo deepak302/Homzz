@@ -1,5 +1,6 @@
 package com.mentobile.homzz;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -11,10 +12,10 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.mentobile.utility.RangeSeekBar;
 import com.mentobile.utility.RangeSeekBar_SQFT;
@@ -24,12 +25,15 @@ import java.util.ArrayList;
 public class SearchFragment extends Fragment implements View.OnClickListener {
 
     final String TAG = "SearchFragment";
-    private Spinner spinnerCity;
-    private EditText edSearchLocation;
 
-    private Button btnSearch;
+    EditText edSearchAny;
+    EditText edSearchLocality;
 
-    private ArrayList<String> arrListFilter = new ArrayList<>();
+    private ImageButton imgBtnApartment;
+    private ImageButton imgBtnBuilderFloor;
+    private ImageButton imgBtnFarmHouse;
+    private ImageButton imgBtnHouse;
+    private ImageButton imgBtnLand;
 
     private Button btnBD1;
     private Button btnBD2;
@@ -38,15 +42,7 @@ public class SearchFragment extends Fragment implements View.OnClickListener {
     private Button btnBD5;
     private Button btnBD5Plus;
 
-    private TextView tvPriceRange;
-
-    private TextView tvListOwner;
-    private TextView tvListAgent;
-    private TextView tvListBuilder;
-
-    EditText edSearchAny;
-    EditText edSearchLocality;
-    private ArrayAdapter<String> adapter;
+    private Button btnSearch;
 
     public SearchFragment() {
         // Required empty public constructor
@@ -65,7 +61,6 @@ public class SearchFragment extends Fragment implements View.OnClickListener {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_search, container, false);
 
-        tvPriceRange = (TextView) view.findViewById(R.id.search_tv_price_range);
         // Add seekBar for Price Range
         final RangeSeekBar<Integer> seekBarPrice = new RangeSeekBar<Integer>(getActivity());
         seekBarPrice.setRangeValues(1, 280);
@@ -104,6 +99,22 @@ public class SearchFragment extends Fragment implements View.OnClickListener {
         LinearLayout layout_Area = (LinearLayout) view.findViewById(R.id.seekbar_area);
         layout_Area.addView(seekBarArea);
 
+
+        imgBtnApartment = (ImageButton) view.findViewById(R.id.search_img_apartment);
+        imgBtnApartment.setOnClickListener(this);
+
+        imgBtnBuilderFloor = (ImageButton) view.findViewById(R.id.search_img_builder_floor);
+        imgBtnBuilderFloor.setOnClickListener(this);
+
+        imgBtnFarmHouse = (ImageButton) view.findViewById(R.id.search_img_farm_house);
+        imgBtnFarmHouse.setOnClickListener(this);
+
+        imgBtnHouse = (ImageButton) view.findViewById(R.id.search_img_house);
+        imgBtnHouse.setOnClickListener(this);
+
+        imgBtnLand = (ImageButton) view.findViewById(R.id.search_img_land);
+        imgBtnLand.setOnClickListener(this);
+
         btnBD1 = (Button) view.findViewById(R.id.search_btn_bd1);
         btnBD1.setOnClickListener(this);
 
@@ -136,37 +147,26 @@ public class SearchFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        String id = "" + v.getId();
-        if (v.isSelected()) {
-            v.setSelected(false);
-        } else {
-            v.setSelected(true);
-        }
+        Log.d(TAG, ":::::ID " + v.getId());
         switch (v.getId()) {
-//            case R.id.search_btn_bd1:
-//                setTVButton(tvBDAny, id);
-//                break;
-//            case R.id.search_btn_bd2:
-//                setTVButton(tvBD1, id);
-//                break;
-//            case R.id.search_btn_bd3:
-//                setTVButton(tvBD2, id);
-//                break;
-//            case R.id.search_btn_bd4:
-//                setTVButton(tvBD3, id);
-//                break;
-//            case R.id.search_btn_bd5:
-//                setTVButton(tvBD4, id);
-//                break;
-//            case R.id.search_btn_5plus:
-//                setTVButton(tvBD4Plus, id);
-//                break;
+            case R.id.search_btn_bd1:
+            case R.id.search_btn_bd2:
+            case R.id.search_btn_bd3:
+            case R.id.search_btn_bd4:
+            case R.id.search_btn_bd5:
+            case R.id.search_btn_5plus:
+                if (v.isSelected()) {
+                    v.setSelected(false);
+                } else {
+                    v.setSelected(true);
+                }
+                break;
 
             // EditText
 
             case R.id.search_ed_anyType:
                 Intent intentSearch = new Intent(getActivity(), SearchActivity.class);
-                startActivity(intentSearch);
+                startActivityForResult(intentSearch, 0);
                 getActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 break;
             case R.id.search_ed_locality:
@@ -186,13 +186,12 @@ public class SearchFragment extends Fragment implements View.OnClickListener {
         }
     }
 
-    private void setTVButton(TextView textView, String id) {
-        if (arrListFilter.contains(id)) {
-            textView.setTextColor(getResources().getColor(R.color.bg_button_login));
-            arrListFilter.remove(id);
-        } else {
-            arrListFilter.add(id);
-            textView.setTextColor(getResources().getColor(R.color.bg_gradient_start));
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK) {
+            String selectData = data.getStringExtra("data");
+            edSearchAny.setText(selectData);
         }
     }
 }
